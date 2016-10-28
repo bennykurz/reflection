@@ -22,7 +22,14 @@
   },
   "autoload": {
     "psr-4": {
-      "N86io\\ClassReflection\\": "src"
-    }
+      "N86io\\Reflection\\": "src"
+    },
+    "files": [
+      "tests/Unit/AbstractTestClass.php",
+      "tests/Unit/TestClass.php",
+      "tests/Unit/TestClassInterface.php",
+      "tests/Unit/TestFunctions.php",
+      "tests/Unit/TestTrait.php"
+    ]
   }
 }
