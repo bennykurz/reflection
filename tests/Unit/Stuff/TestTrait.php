@@ -16,28 +16,13 @@
  * along with N86io/Reflection or see <http://www.gnu.org/licenses/>.
  */
 
-namespace N86io\Reflection\Tests;
+namespace N86io\Reflection\Tests\Stuff;
 
-if (!function_exists('N86io\Reflection\Tests\functionTest')) {
-    function functionTest($funcParam)
-    {
-        return $funcParam;
-    }
+/**
+ * Class TestTrait
+ * @package N86io\Reflection\Tests
+ */
+trait TestTrait
+{
 
-    function closureTest()
-    {
-        return function ($closureParam) {
-            return $closureParam;
-        };
-    }
-
-    class FunctionTest
-    {
-        public function closureTest()
-        {
-            return function ($closureClassParam) {
-                return $closureClassParam;
-            };
-        }
-    }
 }

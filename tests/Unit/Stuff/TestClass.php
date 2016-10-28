@@ -16,13 +16,35 @@
  * along with N86io/Reflection or see <http://www.gnu.org/licenses/>.
  */
 
-namespace N86io\Reflection\Tests;
+namespace N86io\Reflection\Tests\Stuff;
+
+use N86io\Reflection\DocComment;
 
 /**
- * Interface TestClassInterface
+ * Class TestClass
  * @package N86io\Reflection\Tests
  */
-interface TestClassInterface
+class TestClass extends AbstractTestClass
 {
+    use TestTrait;
 
+    const CONSTANT = 'const';
+
+    protected $attributes = 'attr';
+
+    /**
+     * TestClass constructor.
+     */
+    public function __construct()
+    {
+    }
+
+    /**
+     * @param DocComment $parameter
+     * @return string
+     */
+    public function method(DocComment $parameter)
+    {
+        return $parameter;
+    }
 }

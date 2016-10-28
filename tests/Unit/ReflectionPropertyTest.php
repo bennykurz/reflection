@@ -19,7 +19,7 @@
 namespace N86io\Reflection\Tests;
 
 use N86io\Reflection\ReflectionProperty;
-use N86io\Reflection\TestClass;
+use N86io\Reflection\Tests\Stuff\TestClass;
 
 class ReflectionPropertyTest extends \PHPUnit_Framework_TestCase
 {

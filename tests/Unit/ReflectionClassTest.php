@@ -18,11 +18,11 @@
 
 namespace N86io\Reflection\Tests;
 
-use N86io\Reflection\AbstractTestClass;
 use N86io\Reflection\ReflectionClass;
-use N86io\Reflection\TestClass;
-use N86io\Reflection\TestClassInterface;
-use N86io\Reflection\TestTrait;
+use N86io\Reflection\Tests\Stuff\AbstractTestClass;
+use N86io\Reflection\Tests\Stuff\TestClass;
+use N86io\Reflection\Tests\Stuff\TestClassInterface;
+use N86io\Reflection\Tests\Stuff\TestTrait;
 
 /**
  * Class ReflectionClassTest
@@ -31,7 +31,7 @@ use N86io\Reflection\TestTrait;
 class ReflectionClassTest extends \PHPUnit_Framework_TestCase
 {
     /**
-     * @var ReflectionClass
+     * @var \ReflectionClass
      */
     protected $reflectionOriginal;
 

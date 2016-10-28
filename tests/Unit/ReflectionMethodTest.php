@@ -19,7 +19,7 @@
 namespace N86io\Reflection\Tests;
 
 use N86io\Reflection\ReflectionMethod;
-use N86io\Reflection\TestClass;
+use N86io\Reflection\Tests\Stuff\TestClass;
 
 /**
  * Class ReflectionMethodTest

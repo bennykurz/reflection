@@ -16,13 +16,20 @@
  * along with N86io/Reflection or see <http://www.gnu.org/licenses/>.
  */
 
-namespace N86io\Reflection\Tests;
+namespace N86io\Reflection\Tests\Stuff;
 
 /**
- * Class TestTrait
+ * Class AbstractTestClass
  * @package N86io\Reflection\Tests
  */
-trait TestTrait
+abstract class AbstractTestClass implements TestClassInterface
 {
-
+    /**
+     * @param string $parameter
+     * @return string
+     */
+    public function method($parameter)
+    {
+        return $parameter;
+    }
 }

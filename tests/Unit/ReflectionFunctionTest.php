@@ -19,6 +19,7 @@
 namespace N86io\Reflection\Tests;
 
 use N86io\Reflection\ReflectionFunction;
+use N86io\Reflection\Tests\Stuff\FunctionTest;
 
 /**
  * Class ReflectionFunctionTest
@@ -58,11 +59,11 @@ class ReflectionFunctionTest extends \PHPUnit_Framework_TestCase
 
     public function setUp()
     {
-        require realpath(__DIR__ . '/TestFunctions.php');
-        $this->functionOrig = new \ReflectionFunction('N86io\Reflection\Tests\functionTest');
-        $this->function = new ReflectionFunction('N86io\Reflection\Tests\functionTest');
-        $this->closure1Orig = new \ReflectionFunction(closureTest());
-        $this->closure1 = new ReflectionFunction(closureTest());
+        require realpath(__DIR__ . '/Stuff/TestFunctions.php');
+        $this->functionOrig = new \ReflectionFunction('N86io\Reflection\Tests\Stuff\functionTest');
+        $this->function = new ReflectionFunction('N86io\Reflection\Tests\Stuff\functionTest');
+        $this->closure1Orig = new \ReflectionFunction(\N86io\Reflection\Tests\Stuff\closureTest());
+        $this->closure1 = new ReflectionFunction(\N86io\Reflection\Tests\Stuff\closureTest());
         $this->closure2Orig = new \ReflectionFunction((new FunctionTest())->closureTest());
         $this->closure2 = new ReflectionFunction((new FunctionTest())->closureTest());
     }

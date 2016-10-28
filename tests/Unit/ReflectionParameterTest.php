@@ -19,7 +19,7 @@
 namespace N86io\Reflection\Tests;
 
 use N86io\Reflection\ReflectionParameter;
-use N86io\Reflection\TestClass;
+use N86io\Reflection\Tests\Stuff\TestClass;
 
 /**
  * Class ReflectionParameterTest
@@ -49,11 +49,11 @@ class ReflectionParameterTest extends \PHPUnit_Framework_TestCase
 
     public function setUp()
     {
-        require realpath(__DIR__ . '/TestFunctions.php');
+        require realpath(__DIR__ . '/Stuff/TestFunctions.php');
         $this->methodParamOrig = new \ReflectionParameter([TestClass::class, 'method'], 'parameter');
         $this->methodParam = new ReflectionParameter([TestClass::class, 'method'], 'parameter');
-        $this->funcParamOrig = new \ReflectionParameter('N86io\Reflection\Tests\functionTest', 'funcParam');
-        $this->funcParam = new ReflectionParameter('N86io\Reflection\Tests\functionTest', 'funcParam');
+        $this->funcParamOrig = new \ReflectionParameter('N86io\Reflection\Tests\Stuff\functionTest', 'funcParam');
+        $this->funcParam = new ReflectionParameter('N86io\Reflection\Tests\Stuff\functionTest', 'funcParam');
     }
 
     public function testGetDeclaringClass()
