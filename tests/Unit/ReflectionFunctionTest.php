@@ -99,4 +99,25 @@ class ReflectionFunctionTest extends \PHPUnit_Framework_TestCase
             $this->closure2->getParameters()[0]->getName()
         );
     }
+
+    public function testGetTags()
+    {
+        $tags = $this->function->getTags();
+        $this->assertEquals('$funcParam', $tags['param'][0]);
+        $this->assertEquals('mixed', $tags['return'][0]);
+    }
+
+    public function testGetTagsByName()
+    {
+        $this->assertEquals(
+            'mixed',
+            $this->function->getTagsByName('return')[0]
+        );
+    }
+
+    public function testHasTag()
+    {
+        $this->assertTrue($this->function->hasTag('param'));
+        $this->assertFalse($this->function->hasTag('invalidTag'));
+    }
 }

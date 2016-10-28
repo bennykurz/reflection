@@ -73,4 +73,25 @@ class ReflectionMethodTest extends \PHPUnit_Framework_TestCase
             $this->reflectionMethod->getPrototype()->getName()
         );
     }
+
+    public function testGetTags()
+    {
+        $tags = $this->reflectionMethod->getTags();
+        $this->assertEquals('\N86io\Reflection\DocCommentParser $parameter', $tags['param'][0]);
+        $this->assertEquals('string', $tags['return'][0]);
+    }
+
+    public function testGetTagsByName()
+    {
+        $this->assertEquals(
+            'string',
+            $this->reflectionMethod->getTagsByName('return')[0]
+        );
+    }
+
+    public function testHasTag()
+    {
+        $this->assertTrue($this->reflectionMethod->hasTag('return'));
+        $this->assertFalse($this->reflectionMethod->hasTag('invalidTag'));
+    }
 }

@@ -25,6 +25,11 @@ namespace N86io\Reflection;
 class ReflectionClass extends \ReflectionClass
 {
     /**
+     * @var DocCommentParser
+     */
+    protected $docCommentParser;
+
+    /**
      * @return ReflectionClass[]
      */
     public function getInterfaces()
@@ -115,5 +120,42 @@ class ReflectionClass extends \ReflectionClass
     public function getProperty($name)
     {
         return new ReflectionProperty($this->getName(), parent::getProperty($name)->getName());
+    }
+
+    /**
+     * @return array
+     */
+    public function getTags()
+    {
+        return $this->getParsedDocComment()->getTags();
+    }
+
+    /**
+     * @param string $name
+     * @return array
+     */
+    public function getTagsByName($name)
+    {
+        return $this->getParsedDocComment()->getTagsByName($name);
+    }
+
+    /**
+     * @param string $name
+     * @return bool
+     */
+    public function hasTag($name)
+    {
+        return $this->getParsedDocComment()->hasTag($name);
+    }
+
+    /**
+     * @return DocCommentParser
+     */
+    protected function getParsedDocComment()
+    {
+        if (!$this->docCommentParser) {
+            $this->docCommentParser = new DocCommentParser($this);
+        }
+        return $this->docCommentParser;
     }
 }

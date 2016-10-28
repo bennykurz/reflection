@@ -111,4 +111,26 @@ class ReflectionClassTest extends \PHPUnit_Framework_TestCase
             $this->reflection->getProperty('attributes')->getName()
         );
     }
+
+    public function testGetTags()
+    {
+        $tags = $this->reflection->getTags();
+        $this->assertEquals('', $tags['tagSomething'][0]);
+        $this->assertEquals('with value', $tags['tagSomething'][1]);
+        $this->assertEquals('hello', $tags['otherTag'][0]);
+    }
+
+    public function testGetTagsByName()
+    {
+        $this->assertEquals(
+            'N86io\Reflection\Tests',
+            $this->reflection->getTagsByName('package')[0]
+        );
+    }
+
+    public function testHasTag()
+    {
+        $this->assertTrue($this->reflection->hasTag('tagSomething'));
+        $this->assertFalse($this->reflection->hasTag('invalidTag'));
+    }
 }

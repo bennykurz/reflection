@@ -18,10 +18,13 @@
 
 namespace N86io\Reflection\Tests\Stuff;
 
-use N86io\Reflection\DocComment;
+use N86io\Reflection\DocCommentParser;
 
 /**
  * Class TestClass
+ * @tagSomething
+ * @tagSomething with value
+ * @otherTag hello
  * @package N86io\Reflection\Tests
  */
 class TestClass extends AbstractTestClass
@@ -30,6 +33,9 @@ class TestClass extends AbstractTestClass
 
     const CONSTANT = 'const';
 
+    /**
+     * @var string
+     */
     protected $attributes = 'attr';
 
     /**
@@ -40,10 +46,10 @@ class TestClass extends AbstractTestClass
     }
 
     /**
-     * @param DocComment $parameter
+     * @param DocCommentParser $parameter
      * @return string
      */
-    public function method(DocComment $parameter)
+    public function method(DocCommentParser $parameter)
     {
         return $parameter;
     }

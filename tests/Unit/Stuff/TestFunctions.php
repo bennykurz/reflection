@@ -19,11 +19,18 @@
 namespace N86io\Reflection\Tests\Stuff;
 
 if (!function_exists('N86io\Reflection\Tests\Stuff\functionTest')) {
+    /**
+     * @param $funcParam
+     * @return mixed
+     */
     function functionTest($funcParam)
     {
         return $funcParam;
     }
 
+    /**
+     * @return \Closure
+     */
     function closureTest()
     {
         return function ($closureParam) {
@@ -31,8 +38,15 @@ if (!function_exists('N86io\Reflection\Tests\Stuff\functionTest')) {
         };
     }
 
+    /**
+     * Class FunctionTest
+     * @package N86io\Reflection\Tests\Stuff
+     */
     class FunctionTest
     {
+        /**
+         * @return \Closure
+         */
         public function closureTest()
         {
             return function ($closureClassParam) {

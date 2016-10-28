@@ -21,6 +21,10 @@ namespace N86io\Reflection\Tests;
 use N86io\Reflection\ReflectionProperty;
 use N86io\Reflection\Tests\Stuff\TestClass;
 
+/**
+ * Class ReflectionPropertyTest
+ * @package N86io\Reflection\Tests
+ */
 class ReflectionPropertyTest extends \PHPUnit_Framework_TestCase
 {
     /**
@@ -45,5 +49,25 @@ class ReflectionPropertyTest extends \PHPUnit_Framework_TestCase
             $this->propertyOrig->getDeclaringClass()->getName(),
             $this->property->getDeclaringClass()->getName()
         );
+    }
+
+    public function testGetTags()
+    {
+        $tags = $this->property->getTags();
+        $this->assertEquals('string', $tags['var'][0]);
+    }
+
+    public function testGetTagsByName()
+    {
+        $this->assertEquals(
+            'string',
+            $this->property->getTagsByName('var')[0]
+        );
+    }
+
+    public function testHasTag()
+    {
+        $this->assertTrue($this->property->hasTag('var'));
+        $this->assertFalse($this->property->hasTag('invalidTag'));
     }
 }

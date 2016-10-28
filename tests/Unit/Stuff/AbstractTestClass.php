@@ -20,6 +20,9 @@ namespace N86io\Reflection\Tests\Stuff;
 
 /**
  * Class AbstractTestClass
+ *
+ * Description
+ *
  * @package N86io\Reflection\Tests
  */
 abstract class AbstractTestClass implements TestClassInterface
