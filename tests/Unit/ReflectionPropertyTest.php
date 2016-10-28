@@ -37,10 +37,22 @@ class ReflectionPropertyTest extends \PHPUnit_Framework_TestCase
      */
     protected $property;
 
+    /**
+     * @var ReflectionProperty
+     */
+    protected $property2;
+
+    /**
+     * @var ReflectionProperty
+     */
+    protected $property3;
+
     public function setUp()
     {
         $this->propertyOrig = new \ReflectionProperty(TestClass::class, 'attributes');
         $this->property = new ReflectionProperty(TestClass::class, 'attributes');
+        $this->property2 = new ReflectionProperty(TestClass::class, 'property');
+        $this->property3 = new ReflectionProperty(TestClass::class, 'boolValue');
     }
 
     public function testGetDeclaringClass()
@@ -69,5 +81,42 @@ class ReflectionPropertyTest extends \PHPUnit_Framework_TestCase
     {
         $this->assertTrue($this->property->hasTag('var'));
         $this->assertFalse($this->property->hasTag('invalidTag'));
+    }
+
+    public function testHasGetter()
+    {
+        $this->assertTrue($this->property->hasGetter());
+        $this->assertFalse($this->property2->hasGetter());
+        $this->assertTrue($this->property3->hasGetter());
+    }
+
+    public function testGetGetter()
+    {
+        $this->assertEquals('getAttributes', $this->property->getGetter()->getName());
+        $this->assertEquals('isBoolValue', $this->property3->getGetter()->getName());
+    }
+
+    public function testGetGetterException()
+    {
+        $this->setExpectedException(\InvalidArgumentException::class);
+        $this->property2->getGetter();
+    }
+
+    public function testHasSetter()
+    {
+        $this->assertFalse($this->property->hasSetter());
+        $this->assertTrue($this->property2->hasSetter());
+        $this->assertFalse($this->property3->hasSetter());
+    }
+
+    public function testGetSetter()
+    {
+        $this->assertEquals('setProperty', $this->property2->getSetter()->getName());
+    }
+
+    public function testGetSetterException()
+    {
+        $this->setExpectedException(\InvalidArgumentException::class);
+        $this->property->getSetter();
     }
 }

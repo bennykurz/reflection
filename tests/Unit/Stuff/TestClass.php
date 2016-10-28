@@ -39,6 +39,16 @@ class TestClass extends AbstractTestClass
     protected $attributes = 'attr';
 
     /**
+     * @var array
+     */
+    protected $property;
+
+    /**
+     * @var boolean
+     */
+    protected $boolValue;
+
+    /**
      * TestClass constructor.
      */
     public function __construct()
@@ -52,5 +62,29 @@ class TestClass extends AbstractTestClass
     public function method(DocCommentParser $parameter)
     {
         return $parameter;
+    }
+
+    /**
+     * @return string
+     */
+    public function getAttributes()
+    {
+        return $this->attributes;
+    }
+
+    /**
+     * @param array $property
+     */
+    public function setProperty($property)
+    {
+        $this->property = $property;
+    }
+
+    /**
+     * @return boolean
+     */
+    public function isBoolValue()
+    {
+        return $this->boolValue;
     }
 }

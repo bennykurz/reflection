@@ -64,6 +64,62 @@ class ReflectionProperty extends \ReflectionProperty
     }
 
     /**
+     * @return bool
+     */
+    public function hasGetter()
+    {
+        try {
+            $this->getGetter();
+            return true;
+        } catch (\InvalidArgumentException $e) {
+            return false;
+        }
+    }
+
+    /**
+     * @return ReflectionMethod
+     */
+    public function getGetter()
+    {
+        $type = $this->hasTag('var') ? $this->getTagsByName('var')[0] : '';
+        $possibleGetters = ['get' . ucfirst($this->getName())];
+        if ($type === 'bool' || $type === 'boolean') {
+            $possibleGetters[] = 'is' . ucfirst($this->getName());
+        }
+        foreach ($possibleGetters as $possibleGetter) {
+            if ($this->getDeclaringClass()->hasMethod($possibleGetter)) {
+                return $this->getDeclaringClass()->getMethod($possibleGetter);
+            }
+        }
+        throw new \InvalidArgumentException('Property "' . $this->getName() . '" has no getter.');
+    }
+
+    /**
+     * @return bool
+     */
+    public function hasSetter()
+    {
+        try {
+            $this->getSetter();
+            return true;
+        } catch (\InvalidArgumentException $e) {
+            return false;
+        }
+    }
+
+    /**
+     * @return ReflectionMethod
+     */
+    public function getSetter()
+    {
+        $possibleSetter = 'set' . ucfirst($this->getName());
+        if ($this->getDeclaringClass()->hasMethod($possibleSetter)) {
+            return $this->getDeclaringClass()->getMethod($possibleSetter);
+        }
+        throw new \InvalidArgumentException('Property "' . $this->getName() . '" has no setter.');
+    }
+
+    /**
      * @return DocCommentParser
      */
     protected function getParsedDocComment()
