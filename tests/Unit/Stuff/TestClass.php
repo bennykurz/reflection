@@ -73,6 +73,14 @@ class TestClass extends AbstractTestClass
     }
 
     /**
+     * @return array
+     */
+    protected function getProperty()
+    {
+        return $this->property;
+    }
+
+    /**
      * @param array $property
      */
     public function setProperty($property)

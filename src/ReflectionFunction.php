@@ -56,35 +56,9 @@ class ReflectionFunction extends \ReflectionFunction
     }
 
     /**
-     * @return array
-     */
-    public function getTags()
-    {
-        return $this->getParsedDocComment()->getTags();
-    }
-
-    /**
-     * @param string $name
-     * @return array
-     */
-    public function getTagsByName($name)
-    {
-        return $this->getParsedDocComment()->getTagsByName($name);
-    }
-
-    /**
-     * @param string $name
-     * @return bool
-     */
-    public function hasTag($name)
-    {
-        return $this->getParsedDocComment()->hasTag($name);
-    }
-
-    /**
      * @return DocCommentParser
      */
-    protected function getParsedDocComment()
+    public function getParsedDocComment()
     {
         if (!$this->docCommentParser) {
             $this->docCommentParser = new DocCommentParser($this);

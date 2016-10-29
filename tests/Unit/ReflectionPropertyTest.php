@@ -18,6 +18,7 @@
 
 namespace N86io\Reflection\Tests;
 
+use N86io\Reflection\DocCommentParser;
 use N86io\Reflection\ReflectionProperty;
 use N86io\Reflection\Tests\Stuff\TestClass;
 
@@ -63,26 +64,6 @@ class ReflectionPropertyTest extends \PHPUnit_Framework_TestCase
         );
     }
 
-    public function testGetTags()
-    {
-        $tags = $this->property->getTags();
-        $this->assertEquals('string', $tags['var'][0]);
-    }
-
-    public function testGetTagsByName()
-    {
-        $this->assertEquals(
-            'string',
-            $this->property->getTagsByName('var')[0]
-        );
-    }
-
-    public function testHasTag()
-    {
-        $this->assertTrue($this->property->hasTag('var'));
-        $this->assertFalse($this->property->hasTag('invalidTag'));
-    }
-
     public function testHasGetter()
     {
         $this->assertTrue($this->property->hasGetter());
@@ -118,5 +99,10 @@ class ReflectionPropertyTest extends \PHPUnit_Framework_TestCase
     {
         $this->setExpectedException(\InvalidArgumentException::class);
         $this->property->getSetter();
+    }
+
+    public function testGetParsedDocComment()
+    {
+        $this->assertTrue($this->property->getParsedDocComment() instanceof DocCommentParser);
     }
 }

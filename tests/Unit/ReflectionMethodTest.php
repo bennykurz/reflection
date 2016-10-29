@@ -18,6 +18,7 @@
 
 namespace N86io\Reflection\Tests;
 
+use N86io\Reflection\DocCommentParser;
 use N86io\Reflection\ReflectionMethod;
 use N86io\Reflection\Tests\Stuff\TestClass;
 
@@ -74,24 +75,8 @@ class ReflectionMethodTest extends \PHPUnit_Framework_TestCase
         );
     }
 
-    public function testGetTags()
+    public function testGetParsedDocComment()
     {
-        $tags = $this->reflectionMethod->getTags();
-        $this->assertEquals('\N86io\Reflection\DocCommentParser $parameter', $tags['param'][0]);
-        $this->assertEquals('string', $tags['return'][0]);
-    }
-
-    public function testGetTagsByName()
-    {
-        $this->assertEquals(
-            'string',
-            $this->reflectionMethod->getTagsByName('return')[0]
-        );
-    }
-
-    public function testHasTag()
-    {
-        $this->assertTrue($this->reflectionMethod->hasTag('return'));
-        $this->assertFalse($this->reflectionMethod->hasTag('invalidTag'));
+        $this->assertTrue($this->reflectionMethod->getParsedDocComment() instanceof DocCommentParser);
     }
 }

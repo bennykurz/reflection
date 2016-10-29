@@ -38,29 +38,14 @@ class ReflectionProperty extends \ReflectionProperty
     }
 
     /**
-     * @return array
+     * @return DocCommentParser
      */
-    public function getTags()
+    public function getParsedDocComment()
     {
-        return $this->getParsedDocComment()->getTags();
-    }
-
-    /**
-     * @param string $name
-     * @return array
-     */
-    public function getTagsByName($name)
-    {
-        return $this->getParsedDocComment()->getTagsByName($name);
-    }
-
-    /**
-     * @param string $name
-     * @return bool
-     */
-    public function hasTag($name)
-    {
-        return $this->getParsedDocComment()->hasTag($name);
+        if (!$this->docCommentParser) {
+            $this->docCommentParser = new DocCommentParser($this);
+        }
+        return $this->docCommentParser;
     }
 
     /**
@@ -81,14 +66,20 @@ class ReflectionProperty extends \ReflectionProperty
      */
     public function getGetter()
     {
-        $type = $this->hasTag('var') ? $this->getTagsByName('var')[0] : '';
+        $type = $this->getParsedDocComment()->hasTag('var') ?
+            $this->getParsedDocComment()->getTagsByName('var')[0] : '';
         $possibleGetters = ['get' . ucfirst($this->getName())];
         if ($type === 'bool' || $type === 'boolean') {
             $possibleGetters[] = 'is' . ucfirst($this->getName());
         }
         foreach ($possibleGetters as $possibleGetter) {
-            if ($this->getDeclaringClass()->hasMethod($possibleGetter)) {
-                return $this->getDeclaringClass()->getMethod($possibleGetter);
+            try {
+                $method = $this->getDeclaringClass()->getMethod($possibleGetter);
+                if ($method->isPublic()) {
+                    return $method;
+                }
+            } catch (\ReflectionException $e) {
+                // Nothing to do, if method not exist
             }
         }
         throw new \InvalidArgumentException('Property "' . $this->getName() . '" has no getter.');
@@ -114,19 +105,15 @@ class ReflectionProperty extends \ReflectionProperty
     {
         $possibleSetter = 'set' . ucfirst($this->getName());
         if ($this->getDeclaringClass()->hasMethod($possibleSetter)) {
-            return $this->getDeclaringClass()->getMethod($possibleSetter);
+            try {
+                $method = $this->getDeclaringClass()->getMethod($possibleSetter);
+                if ($method->isPublic()) {
+                    return $method;
+                }
+            } catch (\ReflectionException $e) {
+                // Nothing to do, if method not exist
+            }
         }
         throw new \InvalidArgumentException('Property "' . $this->getName() . '" has no setter.');
-    }
-
-    /**
-     * @return DocCommentParser
-     */
-    protected function getParsedDocComment()
-    {
-        if (!$this->docCommentParser) {
-            $this->docCommentParser = new DocCommentParser($this);
-        }
-        return $this->docCommentParser;
     }
 }
