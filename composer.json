@@ -15,14 +15,16 @@
     }
   ],
   "require": {
-    "phpdocumentor/reflection-docblock": "^3.1"
+    "phpdocumentor/reflection-docblock": "^3.1",
+    "phpdocumentor/type-resolver": "^0.2"
   },
   "require-dev": {
     "phpunit/phpunit": "~4.8.0"
   },
   "autoload": {
     "psr-4": {
-      "N86io\\ClassReflection\\": "src"
+      "N86io\\Reflection\\": "src",
+      "N86io\\Reflection\\Tests\\Stuff\\": "tests/Unit/Stuff"
     }
   }
 }
