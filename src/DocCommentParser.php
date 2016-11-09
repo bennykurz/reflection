@@ -32,17 +32,17 @@ class DocCommentParser
     /**
      * @var string
      */
-    protected $summary;
+    protected $summary = '';
 
     /**
      * @var string
      */
-    protected $description;
+    protected $description = '';
 
     /**
      * @var array
      */
-    protected $tags;
+    protected $tags = [];
 
     /**
      * DocCommentParser constructor.
@@ -52,7 +52,13 @@ class DocCommentParser
     {
         $contextFactory = new ContextFactory;
         $context = $contextFactory->createFromReflector($reflector);
-        $docBlock = DocBlockFactory::createInstance()->create($reflector, $context);
+
+        if (($docCommentString = $reflector->getDocComment()) === false) {
+            return;
+        }
+
+        $docBlock = DocBlockFactory::createInstance()->create($docCommentString, $context);
+
         $this->summary = $docBlock->getSummary();
         $this->description = $docBlock->getDescription()->render();
         $tags = $docBlock->getTags();
