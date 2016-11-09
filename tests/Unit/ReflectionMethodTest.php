@@ -24,7 +24,8 @@ use N86io\Reflection\Tests\Stuff\TestClass;
 
 /**
  * Class ReflectionMethodTest
- * @package N86io\Reflection\Tests
+ *
+ * @author Viktor Firus <v@n86.io>
  */
 class ReflectionMethodTest extends \PHPUnit_Framework_TestCase
 {

@@ -23,7 +23,8 @@ use N86io\Reflection\Tests\Stuff\TestClass;
 
 /**
  * Class ReflectionParameterTest
- * @package N86io\Reflection\Tests
+ *
+ * @author Viktor Firus <v@n86.io>
  */
 class ReflectionParameterTest extends \PHPUnit_Framework_TestCase
 {

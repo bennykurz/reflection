@@ -18,6 +18,10 @@
 
 namespace N86io\Reflection\Tests\Stuff;
 
+/**
+ * @author Viktor Firus <v@n86.io>
+ */
+
 if (!function_exists('N86io\Reflection\Tests\Stuff\functionTest')) {
     /**
      * @param $funcParam
@@ -40,7 +44,6 @@ if (!function_exists('N86io\Reflection\Tests\Stuff\functionTest')) {
 
     /**
      * Class FunctionTest
-     * @package N86io\Reflection\Tests\Stuff
      */
     class FunctionTest
     {

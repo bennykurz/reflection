@@ -24,7 +24,8 @@ use N86io\Reflection\Tests\Stuff\AbstractTestClass;
 
 /**
  * Class DocCommentParserTest
- * @package N86io\Reflection\Tests
+ *
+ * @author Viktor Firus <v@n86.io>
  */
 class DocCommentParserTest extends \PHPUnit_Framework_TestCase
 {
@@ -50,12 +51,12 @@ class DocCommentParserTest extends \PHPUnit_Framework_TestCase
 
     public function testGetTags()
     {
-        $this->assertEquals('N86io\Reflection\Tests', $this->docCommentParser->getTags()['package'][0]);
+        $this->assertEquals('Viktor Firus<v@n86.io>', $this->docCommentParser->getTags()['author'][0]);
     }
 
     public function testGetTagsByName()
     {
-        $this->assertEquals('N86io\Reflection\Tests', $this->docCommentParser->getTagsByName('package')[0]);
+        $this->assertEquals('Viktor Firus<v@n86.io>', $this->docCommentParser->getTagsByName('author')[0]);
     }
 
     public function testGetTagsByNameException()

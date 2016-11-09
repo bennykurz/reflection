@@ -22,10 +22,11 @@ use N86io\Reflection\DocCommentParser;
 
 /**
  * Class TestClass
+ *
+ * @author Viktor Firus <v@n86.io>
  * @tagSomething
  * @tagSomething with value
  * @otherTag hello
- * @package N86io\Reflection\Tests
  */
 class TestClass extends AbstractTestClass
 {

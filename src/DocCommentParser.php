@@ -24,7 +24,8 @@ use phpDocumentor\Reflection\Types\ContextFactory;
 
 /**
  * Class DocCommentParser
- * @package N86io\Reflection
+ *
+ * @author Viktor Firus <v@n86.io>
  */
 class DocCommentParser
 {
@@ -98,7 +99,7 @@ class DocCommentParser
     public function getTagsByName($name)
     {
         if (!array_key_exists($name, $this->tags)) {
-            throw new \InvalidArgumentException('Tag with name "" doesn\'t exists.');
+            throw new \InvalidArgumentException('Tag with name "' . $name . '" doesn\'t exists.');
         }
         return $this->tags[$name];
     }

@@ -20,7 +20,8 @@ namespace N86io\Reflection\Tests\Stuff;
 
 /**
  * Interface TestClassInterface
- * @package N86io\Reflection\Tests
+ *
+ * @author Viktor Firus <v@n86.io>
  */
 interface TestClassInterface
 {

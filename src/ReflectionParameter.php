@@ -20,7 +20,8 @@ namespace N86io\Reflection;
 
 /**
  * Class ReflectionParameter
- * @package N86io\Reflection
+ *
+ * @author Viktor Firus <v@n86.io>
  */
 class ReflectionParameter extends \ReflectionParameter
 {

@@ -23,7 +23,7 @@ namespace N86io\Reflection\Tests\Stuff;
  *
  * Description
  *
- * @package N86io\Reflection\Tests
+ * @author Viktor Firus <v@n86.io>
  */
 abstract class AbstractTestClass implements TestClassInterface
 {

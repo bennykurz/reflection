@@ -20,7 +20,8 @@ namespace N86io\Reflection;
 
 /**
  * Class ReflectionMethod
- * @package N86io\Reflection
+ *
+ * @author Viktor Firus <v@n86.io>
  */
 class ReflectionMethod extends \ReflectionMethod
 {

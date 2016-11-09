@@ -27,7 +27,8 @@ use N86io\Reflection\Tests\Stuff\TestTrait;
 
 /**
  * Class ReflectionClassTest
- * @package N86io\Reflection\Tests
+ *
+ * @author Viktor Firus <v@n86.io>
  */
 class ReflectionClassTest extends \PHPUnit_Framework_TestCase
 {

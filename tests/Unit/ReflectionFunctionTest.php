@@ -24,7 +24,8 @@ use N86io\Reflection\Tests\Stuff\FunctionTest;
 
 /**
  * Class ReflectionFunctionTest
- * @package N86io\Reflection\Tests
+ *
+ * @author Viktor Firus <v@n86.io>
  */
 class ReflectionFunctionTest extends \PHPUnit_Framework_TestCase
 {
