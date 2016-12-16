@@ -26,9 +26,9 @@ namespace N86io\Reflection;
 class ReflectionMethod extends \ReflectionMethod
 {
     /**
-     * @var DocCommentParser
+     * @var DocComment
      */
-    protected $docCommentParser;
+    protected $docComment;
 
     /**
      * @return ReflectionClass
@@ -73,13 +73,13 @@ class ReflectionMethod extends \ReflectionMethod
     }
 
     /**
-     * @return DocCommentParser
+     * @return DocComment
      */
     public function getParsedDocComment()
     {
-        if (!$this->docCommentParser) {
-            $this->docCommentParser = new DocCommentParser($this);
+        if (!$this->docComment) {
+            $this->docComment = new DocComment($this);
         }
-        return $this->docCommentParser;
+        return $this->docComment;
     }
 }

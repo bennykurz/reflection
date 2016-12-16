@@ -26,9 +26,9 @@ namespace N86io\Reflection;
 class ReflectionClass extends \ReflectionClass
 {
     /**
-     * @var DocCommentParser
+     * @var DocComment
      */
-    protected $docCommentParser;
+    protected $docComment;
 
     /**
      * @return ReflectionClass[]
@@ -101,7 +101,7 @@ class ReflectionClass extends \ReflectionClass
     }
 
     /**
-     * @param null $filter
+     * @param int $filter
      * @return ReflectionProperty[]
      */
     public function getProperties($filter = null)
@@ -124,13 +124,13 @@ class ReflectionClass extends \ReflectionClass
     }
 
     /**
-     * @return DocCommentParser
+     * @return DocComment
      */
     public function getParsedDocComment()
     {
-        if (!$this->docCommentParser) {
-            $this->docCommentParser = new DocCommentParser($this);
+        if (!$this->docComment) {
+            $this->docComment = new DocComment($this);
         }
-        return $this->docCommentParser;
+        return $this->docComment;
     }
 }

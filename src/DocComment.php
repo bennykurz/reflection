@@ -21,13 +21,14 @@ namespace N86io\Reflection;
 use phpDocumentor\Reflection\DocBlock\Tag;
 use phpDocumentor\Reflection\DocBlockFactory;
 use phpDocumentor\Reflection\Types\ContextFactory;
+use Webmozart\Assert\Assert;
 
 /**
- * Class DocCommentParser
+ * Class DocComment
  *
  * @author Viktor Firus <v@n86.io>
  */
-class DocCommentParser
+class DocComment
 {
     /**
      * @var string
@@ -45,11 +46,13 @@ class DocCommentParser
     protected $tags = [];
 
     /**
-     * DocCommentParser constructor.
+     * DocComment constructor.
      * @param \Reflector $reflector
      */
     public function __construct(\Reflector $reflector)
     {
+        Assert::methodExists($reflector, 'getDocComment');
+
         $contextFactory = new ContextFactory;
         $context = $contextFactory->createFromReflector($reflector);
 
@@ -102,7 +105,7 @@ class DocCommentParser
      * @param string $name
      * @return array
      */
-    public function getTagsByName($name)
+    public function getTagsByName(string $name)
     {
         if (!array_key_exists($name, $this->tags)) {
             throw new \InvalidArgumentException('Tag with name "' . $name . '" doesn\'t exists.');
@@ -114,7 +117,7 @@ class DocCommentParser
      * @param string $name
      * @return bool
      */
-    public function hasTag($name)
+    public function hasTag(string $name)
     {
         return array_key_exists($name, $this->tags);
     }

@@ -46,10 +46,10 @@ class ReflectionParameter extends \ReflectionParameter
      */
     public function getDeclaringFunction()
     {
-        $parentDeclFunction = parent::getDeclaringFunction();
-        if ($parentDeclFunction instanceof \ReflectionMethod) {
-            return new ReflectionMethod($this->getDeclaringClass()->getName(), $parentDeclFunction->getName());
+        $parentDeclaringFunction = parent::getDeclaringFunction();
+        if ($parentDeclaringFunction instanceof \ReflectionMethod) {
+            return new ReflectionMethod($this->getDeclaringClass()->getName(), $parentDeclaringFunction->getName());
         }
-        return new ReflectionFunction($parentDeclFunction->getName());
+        return new ReflectionFunction($parentDeclaringFunction->getName());
     }
 }

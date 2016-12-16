@@ -18,6 +18,8 @@
 
 namespace N86io\Reflection;
 
+use N86io\Reflection\Exception\ReflectionPropertyException;
+
 /**
  * Class ReflectionProperty
  *
@@ -26,9 +28,9 @@ namespace N86io\Reflection;
 class ReflectionProperty extends \ReflectionProperty
 {
     /**
-     * @var DocCommentParser
+     * @var DocComment
      */
-    protected $docCommentParser;
+    protected $docComment;
 
     /**
      * @return ReflectionClass
@@ -39,14 +41,14 @@ class ReflectionProperty extends \ReflectionProperty
     }
 
     /**
-     * @return DocCommentParser
+     * @return DocComment
      */
     public function getParsedDocComment()
     {
-        if (!$this->docCommentParser) {
-            $this->docCommentParser = new DocCommentParser($this);
+        if (!$this->docComment) {
+            $this->docComment = new DocComment($this);
         }
-        return $this->docCommentParser;
+        return $this->docComment;
     }
 
     /**
@@ -57,13 +59,14 @@ class ReflectionProperty extends \ReflectionProperty
         try {
             $this->getGetter();
             return true;
-        } catch (\InvalidArgumentException $e) {
+        } catch (ReflectionPropertyException $e) {
             return false;
         }
     }
 
     /**
      * @return ReflectionMethod
+     * @throws ReflectionPropertyException
      */
     public function getGetter()
     {
@@ -83,7 +86,7 @@ class ReflectionProperty extends \ReflectionProperty
                 // Nothing to do, if method not exist
             }
         }
-        throw new \InvalidArgumentException('Property "' . $this->getName() . '" has no getter.');
+        throw new ReflectionPropertyException('Property "' . $this->getName() . '" has no getter.');
     }
 
     /**
@@ -94,27 +97,26 @@ class ReflectionProperty extends \ReflectionProperty
         try {
             $this->getSetter();
             return true;
-        } catch (\InvalidArgumentException $e) {
+        } catch (ReflectionPropertyException $e) {
             return false;
         }
     }
 
     /**
      * @return ReflectionMethod
+     * @throws ReflectionPropertyException
      */
     public function getSetter()
     {
         $possibleSetter = 'set' . ucfirst($this->getName());
-        if ($this->getDeclaringClass()->hasMethod($possibleSetter)) {
-            try {
-                $method = $this->getDeclaringClass()->getMethod($possibleSetter);
-                if ($method->isPublic()) {
-                    return $method;
-                }
-            } catch (\ReflectionException $e) {
-                // Nothing to do, if method not exist
+        try {
+            $method = $this->getDeclaringClass()->getMethod($possibleSetter);
+            if ($method->isPublic()) {
+                return $method;
             }
+        } catch (\ReflectionException $e) {
+            // Nothing to do, if method not exist
         }
-        throw new \InvalidArgumentException('Property "' . $this->getName() . '" has no setter.');
+        throw new ReflectionPropertyException('Property "' . $this->getName() . '" has no setter.');
     }
 }

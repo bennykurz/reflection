@@ -26,9 +26,9 @@ namespace N86io\Reflection;
 class ReflectionFunction extends \ReflectionFunction
 {
     /**
-     * @var DocCommentParser
+     * @var DocComment
      */
-    protected $docCommentParser;
+    protected $docComment;
 
     /**
      * @return null|ReflectionClass
@@ -36,7 +36,7 @@ class ReflectionFunction extends \ReflectionFunction
     public function getClosureScopeClass()
     {
         $parentClosureScope = parent::getClosureScopeClass();
-        return $parentClosureScope ? new ReflectionClass($parentClosureScope->getName()) : $parentClosureScope;
+        return $parentClosureScope ? new ReflectionClass($parentClosureScope->getName()) : null;
     }
 
     /**
@@ -57,13 +57,13 @@ class ReflectionFunction extends \ReflectionFunction
     }
 
     /**
-     * @return DocCommentParser
+     * @return DocComment
      */
     public function getParsedDocComment()
     {
-        if (!$this->docCommentParser) {
-            $this->docCommentParser = new DocCommentParser($this);
+        if (!$this->docComment) {
+            $this->docComment = new DocComment($this);
         }
-        return $this->docCommentParser;
+        return $this->docComment;
     }
 }
