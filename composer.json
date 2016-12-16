@@ -17,7 +17,8 @@
   "require": {
     "php": ">=7.0",
     "phpdocumentor/reflection-docblock": "^3.1",
-    "phpdocumentor/type-resolver": "^0.2"
+    "phpdocumentor/type-resolver": "^0.2",
+    "webmozart/assert": "^1.2"
   },
   "require-dev": {
     "codeclimate/php-test-reporter": "dev-master",
