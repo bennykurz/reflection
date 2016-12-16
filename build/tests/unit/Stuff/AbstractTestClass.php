@@ -16,45 +16,23 @@
  * along with N86io/Reflection or see <http://www.gnu.org/licenses/>.
  */
 
-namespace N86io\Reflection\Tests\Stuff;
+namespace N86io\Reflection\Tests\Unit\Stuff;
 
 /**
+ * Class AbstractTestClass
+ *
+ * Description
+ *
  * @author Viktor Firus <v@n86.io>
  */
-
-if (!function_exists('N86io\Reflection\Tests\Stuff\functionTest')) {
+abstract class AbstractTestClass implements TestClassInterface
+{
     /**
-     * @param $funcParam
-     * @return mixed
+     * @param AbstractTestClass $parameter
+     * @return string
      */
-    function functionTest($funcParam)
+    public function method(AbstractTestClass $parameter)
     {
-        return $funcParam;
-    }
-
-    /**
-     * @return \Closure
-     */
-    function closureTest()
-    {
-        return function ($closureParam) {
-            return $closureParam;
-        };
-    }
-
-    /**
-     * Class FunctionTest
-     */
-    class FunctionTest
-    {
-        /**
-         * @return \Closure
-         */
-        public function closureTest()
-        {
-            return function ($closureClassParam) {
-                return $closureClassParam;
-            };
-        }
+        return $parameter;
     }
 }

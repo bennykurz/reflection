@@ -16,9 +16,7 @@
  * along with N86io/Reflection or see <http://www.gnu.org/licenses/>.
  */
 
-namespace N86io\Reflection\Tests\Stuff;
-
-use N86io\Reflection\DocCommentParser;
+namespace N86io\Reflection\Tests\Unit\Stuff;
 
 /**
  * Class TestClass
@@ -57,10 +55,10 @@ class TestClass extends AbstractTestClass
     }
 
     /**
-     * @param DocCommentParser $parameter
+     * @param AbstractTestClass $parameter
      * @return string
      */
-    public function method(DocCommentParser $parameter)
+    public function method(AbstractTestClass $parameter)
     {
         return $parameter;
     }
@@ -89,9 +87,6 @@ class TestClass extends AbstractTestClass
         $this->property = $property;
     }
 
-    /**
-     * @return boolean
-     */
     public function isBoolValue()
     {
         return $this->boolValue;

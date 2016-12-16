@@ -16,11 +16,11 @@
  * along with N86io/Reflection or see <http://www.gnu.org/licenses/>.
  */
 
-namespace N86io\Reflection\Tests;
+namespace N86io\Reflection\Tests\Unit;
 
-use N86io\Reflection\DocCommentParser;
+use N86io\Reflection\DocComment;
 use N86io\Reflection\ReflectionFunction;
-use N86io\Reflection\Tests\Stuff\FunctionTest;
+use N86io\Reflection\Tests\Unit\Stuff\FunctionTest;
 
 /**
  * Class ReflectionFunctionTest
@@ -62,10 +62,10 @@ class ReflectionFunctionTest extends \PHPUnit_Framework_TestCase
     public function setUp()
     {
         require realpath(__DIR__ . '/Stuff/TestFunctions.php');
-        $this->functionOrig = new \ReflectionFunction('N86io\Reflection\Tests\Stuff\functionTest');
-        $this->function = new ReflectionFunction('N86io\Reflection\Tests\Stuff\functionTest');
-        $this->closure1Orig = new \ReflectionFunction(\N86io\Reflection\Tests\Stuff\closureTest());
-        $this->closure1 = new ReflectionFunction(\N86io\Reflection\Tests\Stuff\closureTest());
+        $this->functionOrig = new \ReflectionFunction('N86io\Reflection\Tests\Unit\Stuff\functionTest');
+        $this->function = new ReflectionFunction('N86io\Reflection\Tests\Unit\Stuff\functionTest');
+        $this->closure1Orig = new \ReflectionFunction(\N86io\Reflection\Tests\Unit\Stuff\closureTest());
+        $this->closure1 = new ReflectionFunction(\N86io\Reflection\Tests\Unit\Stuff\closureTest());
         $this->closure2Orig = new \ReflectionFunction((new FunctionTest())->closureTest());
         $this->closure2 = new ReflectionFunction((new FunctionTest())->closureTest());
     }
@@ -104,6 +104,6 @@ class ReflectionFunctionTest extends \PHPUnit_Framework_TestCase
 
     public function testGetParsedDocComment()
     {
-        $this->assertTrue($this->function->getParsedDocComment() instanceof DocCommentParser);
+        $this->assertTrue($this->function->getParsedDocComment() instanceof DocComment);
     }
 }

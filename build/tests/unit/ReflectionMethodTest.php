@@ -16,11 +16,11 @@
  * along with N86io/Reflection or see <http://www.gnu.org/licenses/>.
  */
 
-namespace N86io\Reflection\Tests;
+namespace N86io\Reflection\Tests\Unit;
 
-use N86io\Reflection\DocCommentParser;
+use N86io\Reflection\DocComment;
 use N86io\Reflection\ReflectionMethod;
-use N86io\Reflection\Tests\Stuff\TestClass;
+use N86io\Reflection\Tests\Unit\Stuff\TestClass;
 
 /**
  * Class ReflectionMethodTest
@@ -78,6 +78,6 @@ class ReflectionMethodTest extends \PHPUnit_Framework_TestCase
 
     public function testGetParsedDocComment()
     {
-        $this->assertTrue($this->reflectionMethod->getParsedDocComment() instanceof DocCommentParser);
+        $this->assertTrue($this->reflectionMethod->getParsedDocComment() instanceof DocComment);
     }
 }

@@ -16,11 +16,12 @@
  * along with N86io/Reflection or see <http://www.gnu.org/licenses/>.
  */
 
-namespace N86io\Reflection\Tests;
+namespace N86io\Reflection\Tests\Unit;
 
-use N86io\Reflection\DocCommentParser;
+use N86io\Reflection\DocComment;
+use N86io\Reflection\Exception\ReflectionPropertyException;
 use N86io\Reflection\ReflectionProperty;
-use N86io\Reflection\Tests\Stuff\TestClass;
+use N86io\Reflection\Tests\Unit\Stuff\TestClass;
 
 /**
  * Class ReflectionPropertyTest
@@ -80,7 +81,7 @@ class ReflectionPropertyTest extends \PHPUnit_Framework_TestCase
 
     public function testGetGetterException()
     {
-        $this->setExpectedException(\InvalidArgumentException::class);
+        $this->setExpectedException(ReflectionPropertyException::class);
         $this->property2->getGetter();
     }
 
@@ -98,12 +99,12 @@ class ReflectionPropertyTest extends \PHPUnit_Framework_TestCase
 
     public function testGetSetterException()
     {
-        $this->setExpectedException(\InvalidArgumentException::class);
+        $this->setExpectedException(ReflectionPropertyException::class);
         $this->property->getSetter();
     }
 
     public function testGetParsedDocComment()
     {
-        $this->assertTrue($this->property->getParsedDocComment() instanceof DocCommentParser);
+        $this->assertTrue($this->property->getParsedDocComment() instanceof DocComment);
     }
 }

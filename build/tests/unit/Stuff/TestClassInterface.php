@@ -16,7 +16,7 @@
  * along with N86io/Reflection or see <http://www.gnu.org/licenses/>.
  */
 
-namespace N86io\Reflection\Tests\Stuff;
+namespace N86io\Reflection\Tests\Unit\Stuff;
 
 /**
  * Interface TestClassInterface
