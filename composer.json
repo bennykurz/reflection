@@ -1,6 +1,6 @@
 {
   "name": "n86io/reflection",
-  "description": "Extends the PHP ReflectionClass, ReflectionMethod and ReflectionProperty with doc-comment parsing.",
+  "description": "Extends the PHP ReflectionClass, ReflectionMethod, ReflectionProperty, ReflectionFunction and ReflectionParameter with doc-comment parsing.",
   "license": "GPL-3.0+",
   "keywords": [
     "class",
@@ -26,9 +26,11 @@
   },
   "autoload": {
     "psr-4": {
-      "N86io\\Reflection\\": "src",
-      "N86io\\Reflection\\Tests\\Stuff\\": "tests/Unit/Stuff"
+      "N86io\\Reflection\\": "src"
     }
+  },
+  "autoload-dev": {
+    "N86io\\Reflection\\Tests\\Unit\\Stuff\\": "build/tests/unit/Stuff"
   },
   "extra": {
     "branch-alias": {
