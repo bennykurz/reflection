@@ -21,10 +21,10 @@ namespace N86io\Reflection\Tests\Unit\Stuff;
 /**
  * Class TestClass
  *
- * @author Viktor Firus <v@n86.io>
+ * @author       Viktor Firus <v@n86.io>
  * @tagSomething
  * @tagSomething with value
- * @otherTag hello
+ * @otherTag     hello
  */
 class TestClass extends AbstractTestClass
 {
@@ -56,6 +56,7 @@ class TestClass extends AbstractTestClass
 
     /**
      * @param AbstractTestClass $parameter
+     *
      * @return string
      */
     public function method(AbstractTestClass $parameter)

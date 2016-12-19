@@ -44,6 +44,7 @@ class ReflectionMethod extends \ReflectionMethod
     public function getClosureScopeClass()
     {
         $parentClosureScope = parent::getClosureScopeClass();
+
         return $parentClosureScope ? new ReflectionClass($parentClosureScope->getName()) : false;
     }
 
@@ -60,6 +61,7 @@ class ReflectionMethod extends \ReflectionMethod
                 $parentParameter->getName()
             );
         }
+
         return $returnParameters;
     }
 
@@ -69,6 +71,7 @@ class ReflectionMethod extends \ReflectionMethod
     public function getPrototype()
     {
         $parentPrototype = parent::getPrototype();
+
         return new ReflectionMethod($this->getDeclaringClass()->getName(), $parentPrototype->getName());
     }
 
@@ -80,6 +83,7 @@ class ReflectionMethod extends \ReflectionMethod
         if (!$this->docComment) {
             $this->docComment = new DocComment($this);
         }
+
         return $this->docComment;
     }
 }

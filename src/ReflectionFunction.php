@@ -36,6 +36,7 @@ class ReflectionFunction extends \ReflectionFunction
     public function getClosureScopeClass()
     {
         $parentClosureScope = parent::getClosureScopeClass();
+
         return $parentClosureScope ? new ReflectionClass($parentClosureScope->getName()) : null;
     }
 
@@ -53,6 +54,7 @@ class ReflectionFunction extends \ReflectionFunction
             }
             $returnParameters[] = new ReflectionParameter($this->getName(), $parentParameter->getName());
         }
+
         return $returnParameters;
     }
 
@@ -64,6 +66,7 @@ class ReflectionFunction extends \ReflectionFunction
         if (!$this->docComment) {
             $this->docComment = new DocComment($this);
         }
+
         return $this->docComment;
     }
 }

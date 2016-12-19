@@ -40,6 +40,7 @@ class ReflectionClass extends \ReflectionClass
         foreach ($parentInterfaces as $parentInterface) {
             $returnInterfaces[$parentInterface->getName()] = new ReflectionClass($parentInterface->getName());
         }
+
         return $returnInterfaces;
     }
 
@@ -49,6 +50,7 @@ class ReflectionClass extends \ReflectionClass
     public function getParentClass()
     {
         $parentClass = parent::getParentClass();
+
         return $parentClass ? new ReflectionClass($parentClass->getName()) : false;
     }
 
@@ -62,6 +64,7 @@ class ReflectionClass extends \ReflectionClass
         foreach ($parentTraits as $parentTrait) {
             $returnTraits[$parentTrait->getName()] = new ReflectionClass($parentTrait->getName());
         }
+
         return $returnTraits;
     }
 
@@ -74,11 +77,13 @@ class ReflectionClass extends \ReflectionClass
         if ($parentConstructor instanceof \ReflectionMethod) {
             return new ReflectionMethod($this->getName(), $parentConstructor->getName());
         }
+
         return null;
     }
 
     /**
      * @param int $filter
+     *
      * @return ReflectionMethod[]
      */
     public function getMethods($filter = null)
@@ -88,11 +93,13 @@ class ReflectionClass extends \ReflectionClass
         foreach ($parentMethods as $originalMethod) {
             $returnMethods[] = new ReflectionMethod($this->getName(), $originalMethod->getName());
         }
+
         return $returnMethods;
     }
 
     /**
      * @param string $name
+     *
      * @return ReflectionMethod
      */
     public function getMethod($name)
@@ -102,6 +109,7 @@ class ReflectionClass extends \ReflectionClass
 
     /**
      * @param int $filter
+     *
      * @return ReflectionProperty[]
      */
     public function getProperties($filter = null)
@@ -111,11 +119,13 @@ class ReflectionClass extends \ReflectionClass
         foreach ($parentProperties as $parentProperty) {
             $returnProperties[] = new ReflectionProperty($this->getName(), $parentProperty->getName());
         }
+
         return $returnProperties;
     }
 
     /**
      * @param string $name
+     *
      * @return ReflectionProperty
      */
     public function getProperty($name)
@@ -131,6 +141,7 @@ class ReflectionClass extends \ReflectionClass
         if (!$this->docComment) {
             $this->docComment = new DocComment($this);
         }
+
         return $this->docComment;
     }
 }

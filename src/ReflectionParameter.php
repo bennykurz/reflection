@@ -50,6 +50,7 @@ class ReflectionParameter extends \ReflectionParameter
         if ($parentDeclaringFunction instanceof \ReflectionMethod) {
             return new ReflectionMethod($this->getDeclaringClass()->getName(), $parentDeclaringFunction->getName());
         }
+
         return new ReflectionFunction($parentDeclaringFunction->getName());
     }
 }

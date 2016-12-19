@@ -47,6 +47,7 @@ class DocComment
 
     /**
      * DocComment constructor.
+     *
      * @param \Reflector $reflector
      */
     public function __construct(\Reflector $reflector)
@@ -103,6 +104,7 @@ class DocComment
 
     /**
      * @param string $name
+     *
      * @return array
      */
     public function getTagsByName(string $name)
@@ -110,11 +112,13 @@ class DocComment
         if (!array_key_exists($name, $this->tags)) {
             throw new \InvalidArgumentException('Tag with name "' . $name . '" doesn\'t exists.');
         }
+
         return $this->tags[$name];
     }
 
     /**
      * @param string $name
+     *
      * @return bool
      */
     public function hasTag(string $name)

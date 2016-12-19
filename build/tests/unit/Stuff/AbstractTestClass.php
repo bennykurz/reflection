@@ -29,6 +29,7 @@ abstract class AbstractTestClass implements TestClassInterface
 {
     /**
      * @param AbstractTestClass $parameter
+     *
      * @return string
      */
     public function method(AbstractTestClass $parameter)

@@ -48,6 +48,7 @@ class ReflectionProperty extends \ReflectionProperty
         if (!$this->docComment) {
             $this->docComment = new DocComment($this);
         }
+
         return $this->docComment;
     }
 
@@ -58,6 +59,7 @@ class ReflectionProperty extends \ReflectionProperty
     {
         try {
             $this->getGetter();
+
             return true;
         } catch (ReflectionPropertyException $e) {
             return false;
@@ -96,6 +98,7 @@ class ReflectionProperty extends \ReflectionProperty
     {
         try {
             $this->getSetter();
+
             return true;
         } catch (ReflectionPropertyException $e) {
             return false;

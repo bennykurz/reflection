@@ -25,6 +25,7 @@ namespace N86io\Reflection\Tests\Unit\Stuff;
 if (!function_exists('N86io\Reflection\Tests\Unit\Stuff\functionTest')) {
     /**
      * @param $funcParam
+     *
      * @return mixed
      */
     function functionTest($funcParam)
