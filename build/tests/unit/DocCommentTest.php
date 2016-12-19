@@ -23,13 +23,14 @@ use N86io\Reflection\ReflectionClass;
 use N86io\Reflection\ReflectionMethod;
 use N86io\Reflection\Tests\Unit\Stuff\AbstractTestClass;
 use N86io\Reflection\Tests\Unit\Stuff\TestClass;
+use PHPUnit\Framework\TestCase;
 
 /**
  * Class DocCommentTest
  *
  * @author Viktor Firus <v@n86.io>
  */
-class DocCommentTest extends \PHPUnit_Framework_TestCase
+class DocCommentTest extends TestCase
 {
     /**
      * @var DocComment

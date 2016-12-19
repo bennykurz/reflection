@@ -18,6 +18,8 @@
 
 namespace N86io\Reflection;
 
+use N86io\Reflection\Utility\ReflectionExtensionUtility;
+
 /**
  * Class ReflectionClass
  *
@@ -131,6 +133,14 @@ class ReflectionClass extends \ReflectionClass
     public function getProperty($name)
     {
         return new ReflectionProperty($this->getName(), parent::getProperty($name)->getName());
+    }
+
+    /**
+     * @return ReflectionExtension|null
+     */
+    public function getExtension()
+    {
+        return ReflectionExtensionUtility::getExtension(parent::getExtension());
     }
 
     /**

@@ -22,13 +22,14 @@ use N86io\Reflection\DocComment;
 use N86io\Reflection\Exception\ReflectionPropertyException;
 use N86io\Reflection\ReflectionProperty;
 use N86io\Reflection\Tests\Unit\Stuff\TestClass;
+use PHPUnit\Framework\TestCase;
 
 /**
  * Class ReflectionPropertyTest
  *
  * @author Viktor Firus <v@n86.io>
  */
-class ReflectionPropertyTest extends \PHPUnit_Framework_TestCase
+class ReflectionPropertyTest extends TestCase
 {
     /**
      * @var \ReflectionProperty

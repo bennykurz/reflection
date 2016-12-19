@@ -21,13 +21,14 @@ namespace N86io\Reflection\Tests\Unit;
 use N86io\Reflection\DocComment;
 use N86io\Reflection\ReflectionMethod;
 use N86io\Reflection\Tests\Unit\Stuff\TestClass;
+use PHPUnit\Framework\TestCase;
 
 /**
  * Class ReflectionMethodTest
  *
  * @author Viktor Firus <v@n86.io>
  */
-class ReflectionMethodTest extends \PHPUnit_Framework_TestCase
+class ReflectionMethodTest extends TestCase
 {
     /**
      * @var \ReflectionMethod
@@ -38,10 +39,23 @@ class ReflectionMethodTest extends \PHPUnit_Framework_TestCase
      */
     protected $reflectionMethod;
 
+    /**
+     * @var \ReflectionMethod
+     */
+    protected $methodDateTimeOriginal;
+
+    /**
+     * @var ReflectionMethod
+     */
+    protected $methodDateTime;
+
     public function setUp()
     {
         $this->reflectionMethodOrig = new \ReflectionMethod(TestClass::class, 'method');
         $this->reflectionMethod = new ReflectionMethod(TestClass::class, 'method');
+
+        $this->methodDateTimeOriginal = new \ReflectionMethod(\DateTime::class, 'add');
+        $this->methodDateTime = new ReflectionMethod(\DateTime::class, 'add');
     }
 
     public function testGetDeclaringClass()
@@ -73,6 +87,14 @@ class ReflectionMethodTest extends \PHPUnit_Framework_TestCase
         $this->assertEquals(
             $this->reflectionMethodOrig->getPrototype()->getName(),
             $this->reflectionMethod->getPrototype()->getName()
+        );
+    }
+
+    public function testGetExtension()
+    {
+        $this->assertEquals(
+            $this->methodDateTimeOriginal->getExtension()->getName(),
+            $this->methodDateTime->getExtension()->getName()
         );
     }
 

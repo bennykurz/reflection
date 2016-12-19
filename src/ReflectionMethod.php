@@ -18,6 +18,8 @@
 
 namespace N86io\Reflection;
 
+use N86io\Reflection\Utility\ReflectionExtensionUtility;
+
 /**
  * Class ReflectionMethod
  *
@@ -73,6 +75,14 @@ class ReflectionMethod extends \ReflectionMethod
         $parentPrototype = parent::getPrototype();
 
         return new ReflectionMethod($this->getDeclaringClass()->getName(), $parentPrototype->getName());
+    }
+
+    /**
+     * @return ReflectionExtension|null
+     */
+    public function getExtension()
+    {
+        return ReflectionExtensionUtility::getExtension(parent::getExtension());
     }
 
     /**

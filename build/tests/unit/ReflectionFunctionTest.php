@@ -21,13 +21,14 @@ namespace N86io\Reflection\Tests\Unit;
 use N86io\Reflection\DocComment;
 use N86io\Reflection\ReflectionFunction;
 use N86io\Reflection\Tests\Unit\Stuff\FunctionTest;
+use PHPUnit\Framework\TestCase;
 
 /**
  * Class ReflectionFunctionTest
  *
  * @author Viktor Firus <v@n86.io>
  */
-class ReflectionFunctionTest extends \PHPUnit_Framework_TestCase
+class ReflectionFunctionTest extends TestCase
 {
     /**
      * @var \ReflectionFunction
@@ -59,6 +60,16 @@ class ReflectionFunctionTest extends \PHPUnit_Framework_TestCase
      */
     protected $closure2;
 
+    /**
+     * @var \ReflectionFunction
+     */
+    protected $functionDateOriginal;
+
+    /**
+     * @var ReflectionFunction
+     */
+    protected $functionDate;
+
     public function setUp()
     {
         require realpath(__DIR__ . '/Stuff/TestFunctions.php');
@@ -68,6 +79,9 @@ class ReflectionFunctionTest extends \PHPUnit_Framework_TestCase
         $this->closure1 = new ReflectionFunction(\N86io\Reflection\Tests\Unit\Stuff\closureTest());
         $this->closure2Orig = new \ReflectionFunction((new FunctionTest())->closureTest());
         $this->closure2 = new ReflectionFunction((new FunctionTest())->closureTest());
+
+        $this->functionDateOriginal = new \ReflectionFunction('date');
+        $this->functionDate = new ReflectionFunction('date');
     }
 
     public function testGetClosureScopeClass()
@@ -99,6 +113,14 @@ class ReflectionFunctionTest extends \PHPUnit_Framework_TestCase
         $this->assertEquals(
             $this->closure2Orig->getParameters()[0]->getName(),
             $this->closure2->getParameters()[0]->getName()
+        );
+    }
+
+    public function testGetExtension()
+    {
+        $this->assertEquals(
+            $this->functionDateOriginal->getExtension()->getName(),
+            $this->functionDate->getExtension()->getName()
         );
     }
 

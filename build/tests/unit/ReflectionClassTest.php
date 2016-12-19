@@ -24,13 +24,14 @@ use N86io\Reflection\Tests\Unit\Stuff\AbstractTestClass;
 use N86io\Reflection\Tests\Unit\Stuff\TestClass;
 use N86io\Reflection\Tests\Unit\Stuff\TestClassInterface;
 use N86io\Reflection\Tests\Unit\Stuff\TestTrait;
+use PHPUnit\Framework\TestCase;
 
 /**
  * Class ReflectionClassTest
  *
  * @author Viktor Firus <v@n86.io>
  */
-class ReflectionClassTest extends \PHPUnit_Framework_TestCase
+class ReflectionClassTest extends TestCase
 {
     /**
      * @var \ReflectionClass
@@ -42,10 +43,23 @@ class ReflectionClassTest extends \PHPUnit_Framework_TestCase
      */
     protected $reflection;
 
+    /**
+     * @var \ReflectionClass
+     */
+    protected $reflectionDateTimeOriginal;
+
+    /**
+     * @var ReflectionClass
+     */
+    protected $reflectionDateTime;
+
     public function setUp()
     {
         $this->reflectionOriginal = new \ReflectionClass(TestClass::class);
         $this->reflection = new ReflectionClass(TestClass::class);
+
+        $this->reflectionDateTimeOriginal = new \ReflectionClass(\DateTime::class);
+        $this->reflectionDateTime = new ReflectionClass(\DateTime::class);
     }
 
     public function testGetInterfaces()
@@ -111,6 +125,14 @@ class ReflectionClassTest extends \PHPUnit_Framework_TestCase
         $this->assertEquals(
             $this->reflectionOriginal->getProperty('attributes')->getName(),
             $this->reflection->getProperty('attributes')->getName()
+        );
+    }
+
+    public function testGetExtension()
+    {
+        $this->assertEquals(
+            $this->reflectionDateTimeOriginal->getExtension()->getName(),
+            $this->reflectionDateTime->getExtension()->getName()
         );
     }
 

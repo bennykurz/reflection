@@ -18,6 +18,8 @@
 
 namespace N86io\Reflection;
 
+use N86io\Reflection\Utility\ReflectionExtensionUtility;
+
 /**
  * Class ReflectionFunction
  *
@@ -56,6 +58,14 @@ class ReflectionFunction extends \ReflectionFunction
         }
 
         return $returnParameters;
+    }
+
+    /**
+     * @return ReflectionExtension|null
+     */
+    public function getExtension()
+    {
+        return ReflectionExtensionUtility::getExtension(parent::getExtension());
     }
 
     /**
