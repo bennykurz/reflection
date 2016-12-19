@@ -30,7 +30,9 @@
     }
   },
   "autoload-dev": {
-    "N86io\\Reflection\\Tests\\Unit\\Stuff\\": "build/tests/unit/Stuff"
+    "psr-4": {
+      "N86io\\Reflection\\Tests\\Unit\\Stuff\\": "build/tests/unit/Stuff"
+    }
   },
   "extra": {
     "branch-alias": {
