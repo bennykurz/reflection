@@ -20,6 +20,7 @@ namespace N86io\Reflection;
 
 use N86io\Reflection\Utility\ReflectionClassUtility;
 use N86io\Reflection\Utility\ReflectionExtensionUtility;
+use N86io\Reflection\Utility\ReflectionParameterUtility;
 
 /**
  * Class ReflectionFunction
@@ -46,17 +47,11 @@ class ReflectionFunction extends \ReflectionFunction
      */
     public function getParameters()
     {
-        $parentParameters = parent::getParameters();
-        $returnParameters = [];
-        foreach ($parentParameters as $parentParameter) {
-            if (strpos($this->getName(), '{closure}') !== false) {
-                $returnParameters[] = new ReflectionParameter($this->getClosure(), $parentParameter->getName());
-                continue;
-            }
-            $returnParameters[] = new ReflectionParameter($this->getName(), $parentParameter->getName());
-        }
-
-        return $returnParameters;
+        return ReflectionParameterUtility::convertFunctionParameters(
+            $this->getName(),
+            $this->getClosure(),
+            parent::getParameters()
+        );
     }
 
     /**

@@ -21,6 +21,7 @@ namespace N86io\Reflection;
 use N86io\Reflection\Utility\ReflectionClassUtility;
 use N86io\Reflection\Utility\ReflectionExtensionUtility;
 use N86io\Reflection\Utility\ReflectionMethodUtility;
+use N86io\Reflection\Utility\ReflectionParameterUtility;
 
 /**
  * Class ReflectionMethod
@@ -55,16 +56,11 @@ class ReflectionMethod extends \ReflectionMethod
      */
     public function getParameters()
     {
-        $parentParameters = parent::getParameters();
-        $returnParameters = [];
-        foreach ($parentParameters as $parentParameter) {
-            $returnParameters[] = new ReflectionParameter(
-                [$this->getDeclaringClass()->getName(), $this->getName()],
-                $parentParameter->getName()
-            );
-        }
-
-        return $returnParameters;
+        return ReflectionParameterUtility::convertMethodParameters(
+            $this->getDeclaringClass()->getName(),
+            $this->getName(),
+            parent::getParameters()
+        );
     }
 
     /**
