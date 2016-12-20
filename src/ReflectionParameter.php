@@ -19,6 +19,7 @@
 namespace N86io\Reflection;
 
 use N86io\Reflection\Utility\ReflectionClassUtility;
+use N86io\Reflection\Utility\ReflectionFunctionUtility;
 use N86io\Reflection\Utility\ReflectionMethodUtility;
 
 /**
@@ -57,6 +58,7 @@ class ReflectionParameter extends \ReflectionParameter
             );
         }
 
-        return new ReflectionFunction($parentDeclaringFunction->getName());
+        /** @var $parentDeclaringFunction \ReflectionFunction */
+        return ReflectionFunctionUtility::convertFunction($parentDeclaringFunction);
     }
 }
