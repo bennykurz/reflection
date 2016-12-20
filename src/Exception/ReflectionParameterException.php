@@ -25,5 +25,4 @@ namespace N86io\Reflection\Exception;
  */
 class ReflectionParameterException extends \Exception
 {
-
 }
