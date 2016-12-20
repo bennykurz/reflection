@@ -56,11 +56,7 @@ class ReflectionMethod extends \ReflectionMethod
      */
     public function getParameters()
     {
-        return ReflectionParameterUtility::convertMethodParameters(
-            $this->getDeclaringClass()->getName(),
-            $this->getName(),
-            parent::getParameters()
-        );
+        return ReflectionParameterUtility::convertParameters(parent::getParameters());
     }
 
     /**

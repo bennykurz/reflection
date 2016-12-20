@@ -47,11 +47,7 @@ class ReflectionFunction extends \ReflectionFunction
      */
     public function getParameters()
     {
-        return ReflectionParameterUtility::convertFunctionParameters(
-            $this->getName(),
-            $this->getClosure(),
-            parent::getParameters()
-        );
+        return ReflectionParameterUtility::convertParameters(parent::getParameters());
     }
 
     /**

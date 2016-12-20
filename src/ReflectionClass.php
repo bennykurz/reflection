@@ -97,7 +97,6 @@ class ReflectionClass extends \ReflectionClass
     public function getProperties($filter = null)
     {
         return ReflectionPropertyUtility::convertProperties(
-            $this->getName(),
             $filter === null ? parent::getProperties() : parent::getProperties($filter)
         );
     }
@@ -109,7 +108,7 @@ class ReflectionClass extends \ReflectionClass
      */
     public function getProperty($name)
     {
-        return ReflectionPropertyUtility::convertProperty($this->getName(), parent::getProperty($name));
+        return ReflectionPropertyUtility::convertProperty(parent::getProperty($name));
     }
 
     /**

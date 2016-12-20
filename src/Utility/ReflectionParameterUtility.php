@@ -66,10 +66,13 @@ class ReflectionParameterUtility
     private static function createFunctionDefinition(\ReflectionParameter $parameter)
     {
         if (self::isClosureParameter($parameter)) {
-            /** @var \ReflectionMethod $func */
             $func = $parameter->getDeclaringFunction();
+            if ($func instanceof \ReflectionMethod) {
+                return $func->getClosure($func->getClosureThis());
+            }
 
-            return $func->getClosure($func->getClosureThis());
+            /** @var \ReflectionFunction $func */
+            return $func->getClosure();
         }
 
         if (self::isFunctionParameter($parameter)) {
@@ -105,7 +108,10 @@ class ReflectionParameterUtility
      */
     private static function isFunctionParameter(\ReflectionParameter $parameter): bool
     {
-        return $parameter->getDeclaringFunction() instanceof \ReflectionFunction;
+        return (
+            $parameter->getDeclaringFunction() instanceof \ReflectionFunction &&
+            !self::isClosureParameter($parameter)
+        );
     }
 
     /**

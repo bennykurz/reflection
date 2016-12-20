@@ -16,29 +16,14 @@
  * along with N86io/Reflection or see <http://www.gnu.org/licenses/>.
  */
 
-namespace N86io\Reflection\Tests\Unit\Utility;
-
-use N86io\Reflection\ReflectionExtension;
-use N86io\Reflection\Utility\ReflectionExtensionUtility;
-use PHPUnit\Framework\TestCase;
+namespace N86io\Reflection\Exception;
 
 /**
- * Class ReflectionExtensionUtilityTest
+ * Class ReflectionParameterException
  *
  * @author Viktor Firus <v@n86.io>
  */
-class ReflectionExtensionUtilityTest extends TestCase
+class ReflectionParameterException extends \Exception
 {
-    public function test()
-    {
-        $this->assertNull(ReflectionExtensionUtility::getExtension(null));
-        $this->assertInstanceOf(
-            ReflectionExtension::class,
-            ReflectionExtensionUtility::getExtension(new \ReflectionExtension('date'))
-        );
-        $this->assertInstanceOf(
-            ReflectionExtension::class,
-            ReflectionExtensionUtility::convertExtension(new \ReflectionExtension('date'))
-        );
-    }
+
 }

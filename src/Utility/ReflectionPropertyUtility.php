@@ -29,28 +29,26 @@ use Webmozart\Assert\Assert;
 class ReflectionPropertyUtility
 {
     /**
-     * @param string              $className
      * @param \ReflectionProperty $property
      *
      * @return ReflectionProperty
      */
-    public static function convertProperty(string $className, \ReflectionProperty $property)
+    public static function convertProperty(\ReflectionProperty $property)
     {
-        return new ReflectionProperty($className, $property->getName());
+        return new ReflectionProperty($property->getDeclaringClass()->getName(), $property->getName());
     }
 
     /**
-     * @param string                $className
      * @param \ReflectionProperty[] $properties
      *
      * @return array|ReflectionProperty[]
      */
-    public static function convertProperties(string $className, array $properties): array
+    public static function convertProperties(array $properties): array
     {
         $returnProperties = [];
         foreach ($properties as $property) {
             Assert::isInstanceOf($property, \ReflectionProperty::class);
-            $returnProperties[] = static::convertProperty($className, $property);
+            $returnProperties[] = static::convertProperty($property);
         }
 
         return $returnProperties;

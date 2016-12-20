@@ -33,16 +33,26 @@ class ReflectionClassUtilityTest extends TestCase
     public function testGetClass()
     {
         $reflectionOriginal = new \ReflectionClass(self::class);
+        $reflection = ReflectionClassUtility::getClass($reflectionOriginal);
+        $this->assertInstanceOf(ReflectionClass::class, $reflection);
+
+        $reflection = ReflectionClassUtility::getClass(null);
+        $this->assertNull($reflection);
+    }
+
+    public function testConvertClass()
+    {
+        $reflectionOriginal = new \ReflectionClass(self::class);
         $reflection = ReflectionClassUtility::convertClass($reflectionOriginal);
         $this->assertInstanceOf(ReflectionClass::class, $reflection);
         $this->assertEquals($reflectionOriginal->getName(), $reflection->getName());
     }
 
-    public function testGetClasses()
+    public function testConvertClasses()
     {
         $classesOriginal = [
             self::class      => new \ReflectionClass(self::class),
-            TestClass::class => new ReflectionClass(TestClass::class)
+            TestClass::class => new \ReflectionClass(TestClass::class)
         ];
         $classes = ReflectionClassUtility::convertClasses($classesOriginal);
 
