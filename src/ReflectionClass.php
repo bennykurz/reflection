@@ -47,7 +47,7 @@ class ReflectionClass extends \ReflectionClass
      */
     public function getParentClass()
     {
-        return ReflectionClassUtility::convertClass(parent::getParentClass());
+        return ReflectionClassUtility::getClass(parent::getParentClass());
     }
 
     /**

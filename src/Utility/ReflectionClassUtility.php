@@ -19,6 +19,7 @@
 namespace N86io\Reflection\Utility;
 
 use N86io\Reflection\ReflectionClass;
+use Webmozart\Assert\Assert;
 
 /**
  * Class ReflectionClassUtility
@@ -30,11 +31,25 @@ class ReflectionClassUtility
     /**
      * @param bool|\ReflectionClass $class
      *
-     * @return bool|ReflectionClass
+     * @return bool|ReflectionClass|null
      */
-    public static function convertClass($class)
+    public static function getClass($class)
     {
-        return $class ? new ReflectionClass($class->getName()) : false;
+        if (!$class instanceof \ReflectionClass) {
+            return $class;
+        }
+
+        return static::convertClass($class);
+    }
+
+    /**
+     * @param \ReflectionClass $class
+     *
+     * @return ReflectionClass
+     */
+    public static function convertClass(\ReflectionClass $class): ReflectionClass
+    {
+        return new ReflectionClass($class->getName());
     }
 
     /**
@@ -42,11 +57,12 @@ class ReflectionClassUtility
      *
      * @return ReflectionClass[]
      */
-    public static function convertClasses($classes)
+    public static function convertClasses(array $classes): array
     {
         $returnClasses = [];
         foreach ($classes as $class) {
-            $returnClasses[$class->getName()] = new ReflectionClass($class->getName());
+            Assert::isInstanceOf($class, \ReflectionClass::class);
+            $returnClasses[$class->getName()] = static::convertClass($class);
         }
 
         return $returnClasses;

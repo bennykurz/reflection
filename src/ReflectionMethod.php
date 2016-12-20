@@ -43,11 +43,11 @@ class ReflectionMethod extends \ReflectionMethod
     }
 
     /**
-     * @return bool|ReflectionClass
+     * @return ReflectionClass|null
      */
     public function getClosureScopeClass()
     {
-        return ReflectionClassUtility::convertClass(parent::getClosureScopeClass());
+        return ReflectionClassUtility::getClass(parent::getClosureScopeClass());
     }
 
     /**
