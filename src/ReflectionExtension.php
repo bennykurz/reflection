@@ -34,6 +34,6 @@ class ReflectionExtension extends \ReflectionExtension
      */
     public function getClasses()
     {
-        return ReflectionClassUtility::convertClasses(parent::getClasses());
+        return ReflectionClassUtility::convertList(parent::getClasses());
     }
 }

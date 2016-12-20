@@ -40,7 +40,7 @@ class ReflectionProperty extends \ReflectionProperty
      */
     public function getDeclaringClass()
     {
-        return ReflectionClassUtility::convertClass(parent::getDeclaringClass());
+        return ReflectionClassUtility::convert(parent::getDeclaringClass());
     }
 
     /**

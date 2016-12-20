@@ -35,7 +35,7 @@ class ReflectionPropertyUtility
      *
      * @return ReflectionProperty
      */
-    public static function convertProperty(\ReflectionProperty $property)
+    public static function convert(\ReflectionProperty $property)
     {
         return new ReflectionProperty($property->getDeclaringClass()->getName(), $property->getName());
     }
@@ -45,12 +45,12 @@ class ReflectionPropertyUtility
      *
      * @return array|ReflectionProperty[]
      */
-    public static function convertProperties(array $properties): array
+    public static function convertList(array $properties): array
     {
         $returnProperties = [];
         foreach ($properties as $property) {
             Assert::isInstanceOf($property, \ReflectionProperty::class);
-            $returnProperties[] = static::convertProperty($property);
+            $returnProperties[] = static::convert($property);
         }
 
         return $returnProperties;

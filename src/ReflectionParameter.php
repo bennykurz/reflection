@@ -36,7 +36,7 @@ class ReflectionParameter extends \ReflectionParameter
      */
     public function getDeclaringClass()
     {
-        return ReflectionClassUtility::convertClass(parent::getDeclaringClass());
+        return ReflectionClassUtility::convert(parent::getDeclaringClass());
     }
 
     /**
@@ -44,7 +44,7 @@ class ReflectionParameter extends \ReflectionParameter
      */
     public function getClass()
     {
-        return ReflectionClassUtility::convertClass(parent::getClass());
+        return ReflectionClassUtility::convert(parent::getClass());
     }
 
     /**
@@ -54,12 +54,12 @@ class ReflectionParameter extends \ReflectionParameter
     {
         $parentDeclaringFunction = parent::getDeclaringFunction();
         if ($parentDeclaringFunction instanceof \ReflectionMethod) {
-            return ReflectionMethodUtility::convertMethod(
+            return ReflectionMethodUtility::convert(
                 $parentDeclaringFunction
             );
         }
 
         /** @var $parentDeclaringFunction \ReflectionFunction */
-        return ReflectionFunctionUtility::convertFunction($parentDeclaringFunction);
+        return ReflectionFunctionUtility::convert($parentDeclaringFunction);
     }
 }

@@ -42,7 +42,7 @@ class ReflectionMethod extends \ReflectionMethod
      */
     public function getDeclaringClass()
     {
-        return ReflectionClassUtility::convertClass(parent::getDeclaringClass());
+        return ReflectionClassUtility::convert(parent::getDeclaringClass());
     }
 
     /**
@@ -50,7 +50,7 @@ class ReflectionMethod extends \ReflectionMethod
      */
     public function getClosureScopeClass()
     {
-        return ReflectionClassUtility::getClass(parent::getClosureScopeClass());
+        return ReflectionClassUtility::get(parent::getClosureScopeClass());
     }
 
     /**
@@ -58,7 +58,7 @@ class ReflectionMethod extends \ReflectionMethod
      */
     public function getParameters()
     {
-        return ReflectionParameterUtility::convertParameters(parent::getParameters());
+        return ReflectionParameterUtility::convertList(parent::getParameters());
     }
 
     /**
@@ -66,7 +66,7 @@ class ReflectionMethod extends \ReflectionMethod
      */
     public function getPrototype()
     {
-        return ReflectionMethodUtility::convertMethod(parent::getPrototype());
+        return ReflectionMethodUtility::convert(parent::getPrototype());
     }
 
     /**
@@ -74,7 +74,7 @@ class ReflectionMethod extends \ReflectionMethod
      */
     public function getExtension()
     {
-        return ReflectionExtensionUtility::convertExtension(parent::getExtension());
+        return ReflectionExtensionUtility::get(parent::getExtension());
     }
 
     /**

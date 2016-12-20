@@ -34,7 +34,7 @@ class ReflectionFunctionUtility
      *
      * @return ReflectionFunction
      */
-    public static function convertFunction(\ReflectionFunction $function): ReflectionFunction
+    public static function convert(\ReflectionFunction $function): ReflectionFunction
     {
         return new ReflectionFunction($function->getName());
     }

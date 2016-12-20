@@ -35,13 +35,13 @@ class ReflectionClassUtility
      *
      * @return bool|ReflectionClass|null
      */
-    public static function getClass($class)
+    public static function get($class)
     {
         if (!$class instanceof \ReflectionClass) {
             return $class;
         }
 
-        return static::convertClass($class);
+        return static::convert($class);
     }
 
     /**
@@ -49,7 +49,7 @@ class ReflectionClassUtility
      *
      * @return ReflectionClass
      */
-    public static function convertClass(\ReflectionClass $class): ReflectionClass
+    public static function convert(\ReflectionClass $class): ReflectionClass
     {
         return new ReflectionClass($class->getName());
     }
@@ -59,12 +59,12 @@ class ReflectionClassUtility
      *
      * @return ReflectionClass[]
      */
-    public static function convertClasses(array $classes): array
+    public static function convertList(array $classes): array
     {
         $returnClasses = [];
         foreach ($classes as $class) {
             Assert::isInstanceOf($class, \ReflectionClass::class);
-            $returnClasses[$class->getName()] = static::convertClass($class);
+            $returnClasses[$class->getName()] = static::convert($class);
         }
 
         return $returnClasses;

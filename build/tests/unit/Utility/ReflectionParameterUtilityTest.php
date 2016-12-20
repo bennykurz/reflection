@@ -44,7 +44,7 @@ class ReflectionParameterUtilityTest extends TestCase
             new \ReflectionParameter('N86io\Reflection\Tests\Unit\Stuff\functionTest', 'funcParam'),
             new \ReflectionParameter($closure, 'test')
         ];
-        $parameters = ReflectionParameterUtility::convertParameters($parametersOrig);
+        $parameters = ReflectionParameterUtility::convertList($parametersOrig);
 
         $this->assertInstanceOf(ReflectionParameter::class, $parameters[0]);
         $this->assertEquals('parameter', $parameters[0]->getName());

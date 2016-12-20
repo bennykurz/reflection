@@ -42,7 +42,7 @@ class ReflectionClass extends \ReflectionClass
      */
     public function getInterfaces()
     {
-        return ReflectionClassUtility::convertClasses(parent::getInterfaces());
+        return ReflectionClassUtility::convertList(parent::getInterfaces());
     }
 
     /**
@@ -50,7 +50,7 @@ class ReflectionClass extends \ReflectionClass
      */
     public function getParentClass()
     {
-        return ReflectionClassUtility::getClass(parent::getParentClass());
+        return ReflectionClassUtility::get(parent::getParentClass());
     }
 
     /**
@@ -58,7 +58,7 @@ class ReflectionClass extends \ReflectionClass
      */
     public function getTraits()
     {
-        return ReflectionClassUtility::convertClasses(parent::getTraits());
+        return ReflectionClassUtility::convertList(parent::getTraits());
     }
 
     /**
@@ -66,7 +66,7 @@ class ReflectionClass extends \ReflectionClass
      */
     public function getConstructor()
     {
-        return ReflectionMethodUtility::getMethod(parent::getConstructor());
+        return ReflectionMethodUtility::get(parent::getConstructor());
     }
 
     /**
@@ -76,7 +76,7 @@ class ReflectionClass extends \ReflectionClass
      */
     public function getMethods($filter = null)
     {
-        return ReflectionMethodUtility::convertMethods(
+        return ReflectionMethodUtility::convertList(
             $filter === null ? parent::getMethods() : parent::getMethods($filter)
         );
     }
@@ -88,7 +88,7 @@ class ReflectionClass extends \ReflectionClass
      */
     public function getMethod($name)
     {
-        return ReflectionMethodUtility::convertMethod(parent::getMethod($name));
+        return ReflectionMethodUtility::convert(parent::getMethod($name));
     }
 
     /**
@@ -98,7 +98,7 @@ class ReflectionClass extends \ReflectionClass
      */
     public function getProperties($filter = null)
     {
-        return ReflectionPropertyUtility::convertProperties(
+        return ReflectionPropertyUtility::convertList(
             $filter === null ? parent::getProperties() : parent::getProperties($filter)
         );
     }
@@ -110,7 +110,7 @@ class ReflectionClass extends \ReflectionClass
      */
     public function getProperty($name)
     {
-        return ReflectionPropertyUtility::convertProperty(parent::getProperty($name));
+        return ReflectionPropertyUtility::convert(parent::getProperty($name));
     }
 
     /**
@@ -118,7 +118,7 @@ class ReflectionClass extends \ReflectionClass
      */
     public function getExtension()
     {
-        return ReflectionExtensionUtility::getExtension(parent::getExtension());
+        return ReflectionExtensionUtility::get(parent::getExtension());
     }
 
     /**

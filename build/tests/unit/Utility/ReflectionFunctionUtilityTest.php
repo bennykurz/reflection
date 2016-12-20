@@ -35,7 +35,7 @@ class ReflectionFunctionUtilityTest extends TestCase
     {
         $this->assertInstanceOf(
             ReflectionFunction::class,
-            ReflectionFunctionUtility::convertFunction(new \ReflectionFunction('date'))
+            ReflectionFunctionUtility::convert(new \ReflectionFunction('date'))
         );
     }
 }

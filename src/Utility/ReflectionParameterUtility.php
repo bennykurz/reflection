@@ -36,7 +36,7 @@ class ReflectionParameterUtility
      *
      * @return ReflectionParameter
      */
-    public static function convertParameter(\ReflectionParameter $parameter): ReflectionParameter
+    public static function convert(\ReflectionParameter $parameter): ReflectionParameter
     {
         $functionDefinition = self::createFunctionDefinition($parameter);
 
@@ -48,12 +48,12 @@ class ReflectionParameterUtility
      *
      * @return ReflectionParameter[]
      */
-    public static function convertParameters(array $parameters): array
+    public static function convertList(array $parameters): array
     {
         $returnParameters = [];
         foreach ($parameters as $parameter) {
             Assert::isInstanceOf($parameter, \ReflectionParameter::class);
-            $returnParameters[] = static::convertParameter($parameter);
+            $returnParameters[] = static::convert($parameter);
         }
 
         return $returnParameters;

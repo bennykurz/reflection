@@ -42,7 +42,7 @@ class ReflectionPropertyUtilityTest extends TestCase
             new \ReflectionProperty(self::class, 'testProperty2')
         ];
 
-        $properties = ReflectionPropertyUtility::convertProperties($propertiesOrig);
+        $properties = ReflectionPropertyUtility::convertList($propertiesOrig);
 
         $this->assertInstanceOf(ReflectionProperty::class, $properties[0]);
         $this->assertInstanceOf(ReflectionProperty::class, $properties[1]);

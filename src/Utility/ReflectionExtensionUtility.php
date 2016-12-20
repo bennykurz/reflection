@@ -34,13 +34,13 @@ class ReflectionExtensionUtility
      *
      * @return ReflectionExtension|null
      */
-    public static function getExtension($extension)
+    public static function get($extension)
     {
         if (!$extension instanceof \ReflectionExtension) {
             return null;
         }
 
-        return static::convertExtension($extension);
+        return static::convert($extension);
     }
 
     /**
@@ -48,7 +48,7 @@ class ReflectionExtensionUtility
      *
      * @return ReflectionExtension
      */
-    public static function convertExtension(\ReflectionExtension $extension)
+    public static function convert(\ReflectionExtension $extension)
     {
         return new ReflectionExtension($extension->getName());
     }

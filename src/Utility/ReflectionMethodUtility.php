@@ -34,13 +34,13 @@ class ReflectionMethodUtility
      *
      * @return ReflectionMethod|null
      */
-    public static function getMethod($method)
+    public static function get($method)
     {
         if (!$method instanceof \ReflectionMethod) {
             return null;
         }
 
-        return ReflectionMethodUtility::convertMethod($method);
+        return ReflectionMethodUtility::convert($method);
     }
 
     /**
@@ -48,7 +48,7 @@ class ReflectionMethodUtility
      *
      * @return ReflectionMethod
      */
-    public static function convertMethod(\ReflectionMethod $method): ReflectionMethod
+    public static function convert(\ReflectionMethod $method): ReflectionMethod
     {
         return new ReflectionMethod($method->getDeclaringClass()->getName(), $method->getName());
     }
@@ -58,11 +58,11 @@ class ReflectionMethodUtility
      *
      * @return array
      */
-    public static function convertMethods(array $methods): array
+    public static function convertList(array $methods): array
     {
         $returnMethods = [];
         foreach ($methods as $method) {
-            $returnMethods[] = static::convertMethod($method);
+            $returnMethods[] = static::convert($method);
         }
 
         return $returnMethods;

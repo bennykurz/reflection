@@ -41,7 +41,7 @@ class ReflectionFunction extends \ReflectionFunction
      */
     public function getClosureScopeClass()
     {
-        return ReflectionClassUtility::getClass(parent::getClosureScopeClass());
+        return ReflectionClassUtility::get(parent::getClosureScopeClass());
     }
 
     /**
@@ -49,7 +49,7 @@ class ReflectionFunction extends \ReflectionFunction
      */
     public function getParameters()
     {
-        return ReflectionParameterUtility::convertParameters(parent::getParameters());
+        return ReflectionParameterUtility::convertList(parent::getParameters());
     }
 
     /**
@@ -57,7 +57,7 @@ class ReflectionFunction extends \ReflectionFunction
      */
     public function getExtension()
     {
-        return ReflectionExtensionUtility::convertExtension(parent::getExtension());
+        return ReflectionExtensionUtility::get(parent::getExtension());
     }
 
     /**

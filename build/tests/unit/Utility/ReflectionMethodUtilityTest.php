@@ -33,18 +33,18 @@ class ReflectionMethodUtilityTest extends TestCase
 {
     public function testGetMethod()
     {
-        $reflection = ReflectionMethodUtility::getMethod(null);
+        $reflection = ReflectionMethodUtility::get(null);
         $this->assertNull($reflection);
 
         $reflectionOriginal = new \ReflectionMethod(self::class, 'testGetMethod');
-        $reflection = ReflectionMethodUtility::getMethod($reflectionOriginal);
+        $reflection = ReflectionMethodUtility::get($reflectionOriginal);
         $this->assertInstanceOf(ReflectionMethod::class, $reflection);
     }
 
     public function testConvertMethod()
     {
         $reflectionOriginal = new \ReflectionMethod(self::class, 'testConvertMethod');
-        $reflection = ReflectionMethodUtility::convertMethod($reflectionOriginal);
+        $reflection = ReflectionMethodUtility::convert($reflectionOriginal);
         $this->assertInstanceOf(ReflectionMethod::class, $reflection);
         $this->assertEquals($reflectionOriginal->getName(), $reflection->getName());
     }
@@ -56,7 +56,7 @@ class ReflectionMethodUtilityTest extends TestCase
             new \ReflectionMethod(self::class, 'testConvertMethod'),
             new \ReflectionMethod(self::class, 'testConvertMethods'),
         ];
-        $methods = ReflectionMethodUtility::convertMethods($methodsOriginal);
+        $methods = ReflectionMethodUtility::convertList($methodsOriginal);
 
         foreach ($methods as $method) {
             $this->assertInstanceOf(ReflectionMethod::class, $method);
