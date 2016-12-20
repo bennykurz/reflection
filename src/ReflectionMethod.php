@@ -18,6 +18,7 @@
 
 namespace N86io\Reflection;
 
+use N86io\Reflection\Utility\ReflectionClassUtility;
 use N86io\Reflection\Utility\ReflectionExtensionUtility;
 
 /**
@@ -37,7 +38,7 @@ class ReflectionMethod extends \ReflectionMethod
      */
     public function getDeclaringClass()
     {
-        return new ReflectionClass(parent::getDeclaringClass()->getName());
+        return ReflectionClassUtility::getClass(parent::getDeclaringClass());
     }
 
     /**
@@ -45,9 +46,7 @@ class ReflectionMethod extends \ReflectionMethod
      */
     public function getClosureScopeClass()
     {
-        $parentClosureScope = parent::getClosureScopeClass();
-
-        return $parentClosureScope ? new ReflectionClass($parentClosureScope->getName()) : false;
+        return ReflectionClassUtility::getClass(parent::getClosureScopeClass());
     }
 
     /**

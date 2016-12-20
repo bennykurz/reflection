@@ -18,6 +18,7 @@
 
 namespace N86io\Reflection;
 
+use N86io\Reflection\Utility\ReflectionClassUtility;
 use N86io\Reflection\Utility\ReflectionExtensionUtility;
 
 /**
@@ -37,13 +38,7 @@ class ReflectionClass extends \ReflectionClass
      */
     public function getInterfaces()
     {
-        $parentInterfaces = parent::getInterfaces();
-        $returnInterfaces = [];
-        foreach ($parentInterfaces as $parentInterface) {
-            $returnInterfaces[$parentInterface->getName()] = new ReflectionClass($parentInterface->getName());
-        }
-
-        return $returnInterfaces;
+        return ReflectionClassUtility::getClasses(parent::getInterfaces());
     }
 
     /**
@@ -51,9 +46,7 @@ class ReflectionClass extends \ReflectionClass
      */
     public function getParentClass()
     {
-        $parentClass = parent::getParentClass();
-
-        return $parentClass ? new ReflectionClass($parentClass->getName()) : false;
+        return ReflectionClassUtility::getClass(parent::getParentClass());
     }
 
     /**
@@ -61,13 +54,7 @@ class ReflectionClass extends \ReflectionClass
      */
     public function getTraits()
     {
-        $parentTraits = parent::getTraits();
-        $returnTraits = [];
-        foreach ($parentTraits as $parentTrait) {
-            $returnTraits[$parentTrait->getName()] = new ReflectionClass($parentTrait->getName());
-        }
-
-        return $returnTraits;
+        return ReflectionClassUtility::getClasses(parent::getTraits());
     }
 
     /**

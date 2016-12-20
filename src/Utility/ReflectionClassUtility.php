@@ -16,22 +16,39 @@
  * along with N86io/Reflection or see <http://www.gnu.org/licenses/>.
  */
 
-namespace N86io\Reflection;
+namespace N86io\Reflection\Utility;
 
-use N86io\Reflection\Utility\ReflectionClassUtility;
+use N86io\Reflection\ReflectionClass;
 
 /**
- * Class ReflectionExtension
+ * Class ReflectionClassUtility
  *
  * @author Viktor Firus <v@n86.io>
  */
-class ReflectionExtension extends \ReflectionExtension
+class ReflectionClassUtility
 {
     /**
+     * @param bool|\ReflectionClass $class
+     *
+     * @return bool|ReflectionClass
+     */
+    public static function getClass($class)
+    {
+        return $class ? new ReflectionClass($class->getName()) : false;
+    }
+
+    /**
+     * @param \ReflectionClass[] $classes
+     *
      * @return ReflectionClass[]
      */
-    public function getClasses()
+    public static function getClasses($classes)
     {
-        return ReflectionClassUtility::getClasses(parent::getClasses());
+        $returnClasses = [];
+        foreach ($classes as $class) {
+            $returnClasses[$class->getName()] = new ReflectionClass($class->getName());
+        }
+
+        return $returnClasses;
     }
 }

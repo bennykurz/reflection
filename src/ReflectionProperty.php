@@ -19,6 +19,7 @@
 namespace N86io\Reflection;
 
 use N86io\Reflection\Exception\ReflectionPropertyException;
+use N86io\Reflection\Utility\ReflectionClassUtility;
 
 /**
  * Class ReflectionProperty
@@ -37,7 +38,7 @@ class ReflectionProperty extends \ReflectionProperty
      */
     public function getDeclaringClass()
     {
-        return new ReflectionClass(parent::getDeclaringClass()->getName());
+        return ReflectionClassUtility::getClass(parent::getDeclaringClass());
     }
 
     /**

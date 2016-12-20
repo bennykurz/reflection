@@ -20,7 +20,7 @@ namespace N86io\Reflection\Tests\Unit;
 
 use N86io\Reflection\DocComment;
 use N86io\Reflection\ReflectionClass;
-use N86io\Reflection\Tests\Unit\Stuff\AbstractTestClass;
+use N86io\Reflection\Tests\Unit\Stuff\SomeOtherClass;
 use N86io\Reflection\Tests\Unit\Stuff\TestClass;
 use N86io\Reflection\Tests\Unit\Stuff\TestClassInterface;
 use N86io\Reflection\Tests\Unit\Stuff\TestTrait;
@@ -33,111 +33,78 @@ use PHPUnit\Framework\TestCase;
  */
 class ReflectionClassTest extends TestCase
 {
-    /**
-     * @var \ReflectionClass
-     */
-    protected $reflectionOriginal;
-
-    /**
-     * @var ReflectionClass
-     */
-    protected $reflection;
-
-    /**
-     * @var \ReflectionClass
-     */
-    protected $reflectionDateTimeOriginal;
-
-    /**
-     * @var ReflectionClass
-     */
-    protected $reflectionDateTime;
-
-    public function setUp()
+    public function test()
     {
-        $this->reflectionOriginal = new \ReflectionClass(TestClass::class);
-        $this->reflection = new ReflectionClass(TestClass::class);
+        $reflectionOriginal = new \ReflectionClass(TestClass::class);
+        $reflection = new ReflectionClass(TestClass::class);
 
-        $this->reflectionDateTimeOriginal = new \ReflectionClass(\DateTime::class);
-        $this->reflectionDateTime = new ReflectionClass(\DateTime::class);
+        $this->assertEquals(
+            $reflectionOriginal->getInterfaces()[TestClassInterface::class]->getName(),
+            $reflection->getInterfaces()[TestClassInterface::class]->getName()
+        );
+
+        $this->assertEquals(
+            $reflectionOriginal->getParentClass()->getName(),
+            $reflection->getParentClass()->getName()
+        );
+
+        $this->assertEquals(
+            $reflectionOriginal->getTraits()[TestTrait::class]->getName(),
+            $reflection->getTraits()[TestTrait::class]->getName()
+        );
+
+        $this->assertEquals(
+            $reflectionOriginal->getConstructor()->getName(),
+            $reflection->getConstructor()->getName()
+        );
+
+        $this->assertEquals(
+            $reflectionOriginal->getMethods()[1]->getName(),
+            $reflection->getMethods()[1]->getName()
+        );
+
+        $this->assertEquals(
+            $reflectionOriginal->getMethod('method')->getName(),
+            $reflection->getMethod('method')->getName()
+        );
+
+        $this->assertEquals(
+            $reflectionOriginal->getProperties()[0]->getName(),
+            $reflection->getProperties()[0]->getName()
+        );
+
+        $this->assertEquals(
+            $reflectionOriginal->getProperty('attributes')->getName(),
+            $reflection->getProperty('attributes')->getName()
+        );
+
+        $this->assertEquals($reflectionOriginal->getExtension(), $reflection->getExtension());
+
+        $this->assertTrue($reflection->getParsedDocComment() instanceof DocComment);
     }
 
-    public function testGetInterfaces()
+    public function testWithEmptyClass()
     {
-        $this->assertEquals(
-            $this->reflection->getInterfaces()[TestClassInterface::class]->getName(),
-            $this->reflection->getInterfaces()[TestClassInterface::class]->getName()
-        );
-    }
+        $reflectionOriginal = new \ReflectionClass(SomeOtherClass::class);
+        $reflection = new ReflectionClass(SomeOtherClass::class);
 
-    public function testGetParentClass()
-    {
-        $this->assertEquals(
-            $this->reflectionOriginal->getParentClass()->getName(),
-            $this->reflection->getParentClass()->getName()
-        );
-    }
-
-    public function testGetTraits()
-    {
-        $this->assertEquals(
-            $this->reflectionOriginal->getTraits()[TestTrait::class]->getName(),
-            $this->reflection->getTraits()[TestTrait::class]->getName()
-        );
-    }
-
-    public function testGetConstructor()
-    {
-        $this->assertEquals(
-            $this->reflectionOriginal->getConstructor()->getName(),
-            $this->reflection->getConstructor()->getName()
-        );
-        $reflection = new ReflectionClass(AbstractTestClass::class);
-        $this->assertNull($reflection->getConstructor());
-    }
-
-    public function testGetMethods()
-    {
-        $this->assertEquals(
-            $this->reflectionOriginal->getMethods()[1]->getName(),
-            $this->reflection->getMethods()[1]->getName()
-        );
-    }
-
-    public function testGetMethod()
-    {
-        $this->assertEquals(
-            $this->reflectionOriginal->getMethod('method')->getName(),
-            $this->reflection->getMethod('method')->getName()
-        );
-    }
-
-    public function testGetProperties()
-    {
-        $this->assertEquals(
-            $this->reflectionOriginal->getProperties()[0]->getName(),
-            $this->reflection->getProperties()[0]->getName()
-        );
-    }
-
-    public function testGetProperty()
-    {
-        $this->assertEquals(
-            $this->reflectionOriginal->getProperty('attributes')->getName(),
-            $this->reflection->getProperty('attributes')->getName()
-        );
+        $this->assertEquals($reflectionOriginal->getInterfaces(), $reflection->getInterfaces());
+        $this->assertEquals($reflectionOriginal->getParentClass(), $reflection->getParentClass());
+        $this->assertEquals($reflectionOriginal->getTraits(), $reflection->getTraits());
+        $this->assertEquals($reflectionOriginal->getConstructor(), $reflection->getConstructor());
+        $this->assertEquals($reflectionOriginal->getMethods(), $reflection->getMethods());
+        $this->assertEquals($reflectionOriginal->getProperties(), $reflection->getProperties());
+        $this->assertEquals($reflectionOriginal->getConstructor(), $reflection->getConstructor());
     }
 
     public function testGetExtension()
     {
-        $this->assertEquals(
-            $this->reflectionDateTimeOriginal->getExtension()->getName(),
-            $this->reflectionDateTime->getExtension()->getName()
-        );
-    }
+        $reflectionDateTimeOriginal = new \ReflectionClass(\DateTime::class);
+        $reflectionDateTime = new ReflectionClass(\DateTime::class);
 
-    public function testGetParsedDocComment()
-    {
-        $this->assertTrue($this->reflection->getParsedDocComment() instanceof DocComment);
+        $this->assertEquals(
+            $reflectionDateTimeOriginal->getExtension()->getName(),
+            $reflectionDateTime->getExtension()->getName()
+        );
     }
 }

@@ -16,22 +16,13 @@
  * along with N86io/Reflection or see <http://www.gnu.org/licenses/>.
  */
 
-namespace N86io\Reflection;
-
-use N86io\Reflection\Utility\ReflectionClassUtility;
+namespace N86io\Reflection\Tests\Unit\Stuff;
 
 /**
- * Class ReflectionExtension
+ * Class SomeOtherClass
  *
  * @author Viktor Firus <v@n86.io>
  */
-class ReflectionExtension extends \ReflectionExtension
+class SomeOtherClass
 {
-    /**
-     * @return ReflectionClass[]
-     */
-    public function getClasses()
-    {
-        return ReflectionClassUtility::getClasses(parent::getClasses());
-    }
 }

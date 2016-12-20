@@ -18,6 +18,8 @@
 
 namespace N86io\Reflection;
 
+use N86io\Reflection\Utility\ReflectionClassUtility;
+
 /**
  * Class ReflectionParameter
  *
@@ -30,7 +32,7 @@ class ReflectionParameter extends \ReflectionParameter
      */
     public function getDeclaringClass()
     {
-        return new ReflectionClass(parent::getDeclaringClass()->getName());
+        return ReflectionClassUtility::getClass(parent::getDeclaringClass());
     }
 
     /**
@@ -38,7 +40,7 @@ class ReflectionParameter extends \ReflectionParameter
      */
     public function getClass()
     {
-        return new ReflectionClass(parent::getClass()->getName());
+        return ReflectionClassUtility::getClass(parent::getClass());
     }
 
     /**

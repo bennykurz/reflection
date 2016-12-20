@@ -18,6 +18,7 @@
 
 namespace N86io\Reflection;
 
+use N86io\Reflection\Utility\ReflectionClassUtility;
 use N86io\Reflection\Utility\ReflectionExtensionUtility;
 
 /**
@@ -33,13 +34,11 @@ class ReflectionFunction extends \ReflectionFunction
     protected $docComment;
 
     /**
-     * @return null|ReflectionClass
+     * @return bool|ReflectionClass
      */
     public function getClosureScopeClass()
     {
-        $parentClosureScope = parent::getClosureScopeClass();
-
-        return $parentClosureScope ? new ReflectionClass($parentClosureScope->getName()) : null;
+        return ReflectionClassUtility::getClass(parent::getClosureScopeClass());
     }
 
     /**
