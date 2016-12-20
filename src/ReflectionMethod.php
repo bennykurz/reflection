@@ -80,7 +80,7 @@ class ReflectionMethod extends \ReflectionMethod
      */
     public function getExtension()
     {
-        return ReflectionExtensionUtility::getExtension(parent::getExtension());
+        return ReflectionExtensionUtility::convertExtension(parent::getExtension());
     }
 
     /**

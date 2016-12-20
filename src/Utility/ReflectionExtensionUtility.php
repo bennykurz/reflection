@@ -32,7 +32,7 @@ class ReflectionExtensionUtility
      *
      * @return ReflectionExtension|null
      */
-    public static function getExtension($extension)
+    public static function convertExtension($extension)
     {
         if (!$extension instanceof \ReflectionExtension) {
             return null;
