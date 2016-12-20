@@ -74,7 +74,7 @@ class DocCommentTest extends TestCase
 
     public function testGetTagsByNameException()
     {
-        $this->setExpectedException(\InvalidArgumentException::class);
+        $this->expectException(\InvalidArgumentException::class);
         $this->docComment1->getTagsByName('invalidTagName');
     }
 

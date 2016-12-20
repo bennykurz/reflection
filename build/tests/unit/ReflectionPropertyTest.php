@@ -84,7 +84,7 @@ class ReflectionPropertyTest extends TestCase
 
     public function testGetGetterException()
     {
-        $this->setExpectedException(ReflectionPropertyException::class);
+        $this->expectException(ReflectionPropertyException::class);
         $this->property2->getGetter();
     }
 
@@ -102,7 +102,7 @@ class ReflectionPropertyTest extends TestCase
 
     public function testGetSetterException()
     {
-        $this->setExpectedException(ReflectionPropertyException::class);
+        $this->expectException(ReflectionPropertyException::class);
         $this->property->getSetter();
     }
 
