@@ -31,7 +31,7 @@ class ReflectionExtensionUtilityTest extends TestCase
 {
     public function test()
     {
-        $this->assertNull(ReflectionExtensionUtility::convertExtension(null));
+        $this->assertNull(ReflectionExtensionUtility::getExtension(null));
         $this->assertInstanceOf(
             ReflectionExtension::class,
             ReflectionExtensionUtility::convertExtension(new \ReflectionExtension('date'))

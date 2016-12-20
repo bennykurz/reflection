@@ -118,7 +118,7 @@ class ReflectionClass extends \ReflectionClass
      */
     public function getExtension()
     {
-        return ReflectionExtensionUtility::convertExtension(parent::getExtension());
+        return ReflectionExtensionUtility::getExtension(parent::getExtension());
     }
 
     /**

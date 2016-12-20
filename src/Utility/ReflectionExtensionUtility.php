@@ -32,12 +32,22 @@ class ReflectionExtensionUtility
      *
      * @return ReflectionExtension|null
      */
-    public static function convertExtension($extension)
+    public static function getExtension($extension)
     {
         if (!$extension instanceof \ReflectionExtension) {
             return null;
         }
 
+        return static::convertExtension($extension);
+    }
+
+    /**
+     * @param \ReflectionExtension $extension
+     *
+     * @return ReflectionExtension
+     */
+    public static function convertExtension(\ReflectionExtension $extension)
+    {
         return new ReflectionExtension($extension->getName());
     }
 }
