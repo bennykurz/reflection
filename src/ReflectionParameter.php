@@ -33,7 +33,7 @@ class ReflectionParameter extends \ReflectionParameter
      */
     public function getDeclaringClass()
     {
-        return ReflectionClassUtility::getClass(parent::getDeclaringClass());
+        return ReflectionClassUtility::convertClass(parent::getDeclaringClass());
     }
 
     /**
@@ -41,7 +41,7 @@ class ReflectionParameter extends \ReflectionParameter
      */
     public function getClass()
     {
-        return ReflectionClassUtility::getClass(parent::getClass());
+        return ReflectionClassUtility::convertClass(parent::getClass());
     }
 
     /**

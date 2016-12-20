@@ -38,7 +38,7 @@ class ReflectionFunction extends \ReflectionFunction
      */
     public function getClosureScopeClass()
     {
-        return ReflectionClassUtility::getClass(parent::getClosureScopeClass());
+        return ReflectionClassUtility::convertClass(parent::getClosureScopeClass());
     }
 
     /**

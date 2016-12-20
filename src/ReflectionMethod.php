@@ -39,7 +39,7 @@ class ReflectionMethod extends \ReflectionMethod
      */
     public function getDeclaringClass()
     {
-        return ReflectionClassUtility::getClass(parent::getDeclaringClass());
+        return ReflectionClassUtility::convertClass(parent::getDeclaringClass());
     }
 
     /**
@@ -47,7 +47,7 @@ class ReflectionMethod extends \ReflectionMethod
      */
     public function getClosureScopeClass()
     {
-        return ReflectionClassUtility::getClass(parent::getClosureScopeClass());
+        return ReflectionClassUtility::convertClass(parent::getClosureScopeClass());
     }
 
     /**

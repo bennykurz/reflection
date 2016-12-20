@@ -32,7 +32,7 @@ class ReflectionClassUtility
      *
      * @return bool|ReflectionClass
      */
-    public static function getClass($class)
+    public static function convertClass($class)
     {
         return $class ? new ReflectionClass($class->getName()) : false;
     }
@@ -42,7 +42,7 @@ class ReflectionClassUtility
      *
      * @return ReflectionClass[]
      */
-    public static function getClasses($classes)
+    public static function convertClasses($classes)
     {
         $returnClasses = [];
         foreach ($classes as $class) {

@@ -33,7 +33,7 @@ class ReflectionClassUtilityTest extends TestCase
     public function testGetClass()
     {
         $reflectionOriginal = new \ReflectionClass(self::class);
-        $reflection = ReflectionClassUtility::getClass($reflectionOriginal);
+        $reflection = ReflectionClassUtility::convertClass($reflectionOriginal);
         $this->assertInstanceOf(ReflectionClass::class, $reflection);
         $this->assertEquals($reflectionOriginal->getName(), $reflection->getName());
     }
@@ -44,7 +44,7 @@ class ReflectionClassUtilityTest extends TestCase
             self::class      => new \ReflectionClass(self::class),
             TestClass::class => new ReflectionClass(TestClass::class)
         ];
-        $classes = ReflectionClassUtility::getClasses($classesOriginal);
+        $classes = ReflectionClassUtility::convertClasses($classesOriginal);
 
         foreach ($classes as $class) {
             $this->assertInstanceOf(ReflectionClass::class, $class);

@@ -39,7 +39,7 @@ class ReflectionClass extends \ReflectionClass
      */
     public function getInterfaces()
     {
-        return ReflectionClassUtility::getClasses(parent::getInterfaces());
+        return ReflectionClassUtility::convertClasses(parent::getInterfaces());
     }
 
     /**
@@ -47,7 +47,7 @@ class ReflectionClass extends \ReflectionClass
      */
     public function getParentClass()
     {
-        return ReflectionClassUtility::getClass(parent::getParentClass());
+        return ReflectionClassUtility::convertClass(parent::getParentClass());
     }
 
     /**
@@ -55,7 +55,7 @@ class ReflectionClass extends \ReflectionClass
      */
     public function getTraits()
     {
-        return ReflectionClassUtility::getClasses(parent::getTraits());
+        return ReflectionClassUtility::convertClasses(parent::getTraits());
     }
 
     /**
