@@ -28,6 +28,21 @@ use N86io\Reflection\ReflectionMethod;
 class ReflectionMethodUtility
 {
     /**
+     * @param string                 $className
+     * @param \ReflectionMethod|null $method
+     *
+     * @return ReflectionMethod|null
+     */
+    public static function getMethod(string $className, $method)
+    {
+        if (!$method instanceof \ReflectionMethod) {
+            return null;
+        }
+
+        return ReflectionMethodUtility::convertMethod($className, $method);
+    }
+
+    /**
      * @param string            $className
      * @param \ReflectionMethod $method
      *

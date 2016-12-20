@@ -63,11 +63,7 @@ class ReflectionClass extends \ReflectionClass
      */
     public function getConstructor()
     {
-        $parentConstructor = parent::getConstructor();
-
-        return $parentConstructor instanceof \ReflectionMethod ?
-            ReflectionMethodUtility::convertMethod($this->getName(), $parentConstructor) :
-            null;
+        return ReflectionMethodUtility::getMethod($this->getName(), parent::getConstructor());
     }
 
     /**
