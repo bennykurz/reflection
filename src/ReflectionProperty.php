@@ -31,7 +31,7 @@ class ReflectionProperty extends \ReflectionProperty
     /**
      * @var DocComment
      */
-    protected $docComment;
+    private $docComment;
 
     /**
      * @return ReflectionClass

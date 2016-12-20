@@ -31,7 +31,7 @@ class ReflectionMethod extends \ReflectionMethod
     /**
      * @var DocComment
      */
-    protected $docComment;
+    private $docComment;
 
     /**
      * @return ReflectionClass
