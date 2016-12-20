@@ -21,6 +21,7 @@ namespace N86io\Reflection;
 use N86io\Reflection\Utility\ReflectionClassUtility;
 use N86io\Reflection\Utility\ReflectionExtensionUtility;
 use N86io\Reflection\Utility\ReflectionMethodUtility;
+use N86io\Reflection\Utility\ReflectionPropertyUtility;
 
 /**
  * Class ReflectionClass
@@ -73,9 +74,10 @@ class ReflectionClass extends \ReflectionClass
      */
     public function getMethods($filter = null)
     {
-        $parentMethods = $filter === null ? parent::getMethods() : parent::getMethods($filter);
-
-        return ReflectionMethodUtility::convertMethods($this->getName(), $parentMethods);
+        return ReflectionMethodUtility::convertMethods(
+            $this->getName(),
+            $filter === null ? parent::getMethods() : parent::getMethods($filter)
+        );
     }
 
     /**
@@ -95,13 +97,10 @@ class ReflectionClass extends \ReflectionClass
      */
     public function getProperties($filter = null)
     {
-        $parentProperties = $filter === null ? parent::getProperties() : parent::getProperties($filter);
-        $returnProperties = [];
-        foreach ($parentProperties as $parentProperty) {
-            $returnProperties[] = new ReflectionProperty($this->getName(), $parentProperty->getName());
-        }
-
-        return $returnProperties;
+        return ReflectionPropertyUtility::convertProperties(
+            $this->getName(),
+            $filter === null ? parent::getProperties() : parent::getProperties($filter)
+        );
     }
 
     /**
@@ -111,7 +110,7 @@ class ReflectionClass extends \ReflectionClass
      */
     public function getProperty($name)
     {
-        return new ReflectionProperty($this->getName(), parent::getProperty($name)->getName());
+        return ReflectionPropertyUtility::convertProperty($this->getName(), parent::getProperty($name));
     }
 
     /**
