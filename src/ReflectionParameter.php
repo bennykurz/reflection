@@ -53,7 +53,6 @@ class ReflectionParameter extends \ReflectionParameter
         $parentDeclaringFunction = parent::getDeclaringFunction();
         if ($parentDeclaringFunction instanceof \ReflectionMethod) {
             return ReflectionMethodUtility::convertMethod(
-                $this->getDeclaringClass()->getName(),
                 $parentDeclaringFunction
             );
         }

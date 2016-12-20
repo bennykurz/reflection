@@ -28,42 +28,39 @@ use N86io\Reflection\ReflectionMethod;
 class ReflectionMethodUtility
 {
     /**
-     * @param string                 $className
      * @param \ReflectionMethod|null $method
      *
      * @return ReflectionMethod|null
      */
-    public static function getMethod(string $className, $method)
+    public static function getMethod($method)
     {
         if (!$method instanceof \ReflectionMethod) {
             return null;
         }
 
-        return ReflectionMethodUtility::convertMethod($className, $method);
+        return ReflectionMethodUtility::convertMethod($method);
     }
 
     /**
-     * @param string            $className
      * @param \ReflectionMethod $method
      *
      * @return ReflectionMethod
      */
-    public static function convertMethod(string $className, \ReflectionMethod $method): ReflectionMethod
+    public static function convertMethod(\ReflectionMethod $method): ReflectionMethod
     {
-        return new ReflectionMethod($className, $method->getName());
+        return new ReflectionMethod($method->getDeclaringClass()->getName(), $method->getName());
     }
 
     /**
-     * @param string              $className
      * @param \ReflectionMethod[] $methods
      *
      * @return array
      */
-    public static function convertMethods(string $className, array $methods): array
+    public static function convertMethods(array $methods): array
     {
         $returnMethods = [];
         foreach ($methods as $method) {
-            $returnMethods[] = static::convertMethod($className, $method);
+            $returnMethods[] = static::convertMethod($method);
         }
 
         return $returnMethods;

@@ -64,7 +64,7 @@ class ReflectionClass extends \ReflectionClass
      */
     public function getConstructor()
     {
-        return ReflectionMethodUtility::getMethod($this->getName(), parent::getConstructor());
+        return ReflectionMethodUtility::getMethod(parent::getConstructor());
     }
 
     /**
@@ -75,7 +75,6 @@ class ReflectionClass extends \ReflectionClass
     public function getMethods($filter = null)
     {
         return ReflectionMethodUtility::convertMethods(
-            $this->getName(),
             $filter === null ? parent::getMethods() : parent::getMethods($filter)
         );
     }
@@ -87,7 +86,7 @@ class ReflectionClass extends \ReflectionClass
      */
     public function getMethod($name)
     {
-        return ReflectionMethodUtility::convertMethod($this->getName(), parent::getMethod($name));
+        return ReflectionMethodUtility::convertMethod(parent::getMethod($name));
     }
 
     /**

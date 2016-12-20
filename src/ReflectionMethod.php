@@ -68,7 +68,7 @@ class ReflectionMethod extends \ReflectionMethod
      */
     public function getPrototype()
     {
-        return ReflectionMethodUtility::convertMethod($this->getDeclaringClass()->getName(), parent::getPrototype());
+        return ReflectionMethodUtility::convertMethod(parent::getPrototype());
     }
 
     /**
