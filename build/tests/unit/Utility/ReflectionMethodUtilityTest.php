@@ -1,4 +1,6 @@
 <?php
+declare(strict_types=1);
+
 /**
  * This file is part of N86io/Reflection.
  *
@@ -15,6 +17,7 @@
  * You should have received a copy of the GNU General Public License
  * along with N86io/Reflection or see <http://www.gnu.org/licenses/>.
  */
+
 namespace N86io\Reflection\Tests\Unit\Utility;
 
 use N86io\Reflection\ReflectionMethod;
