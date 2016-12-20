@@ -22,7 +22,7 @@ namespace N86io\Reflection;
 
 use N86io\Reflection\Utility\ReflectionClassUtility;
 use N86io\Reflection\Utility\ReflectionExtensionUtility;
-use N86io\Reflection\Utility\ReflectionMethodUtility;
+use N86io\Reflection\Utility\ReflectionFunctionMethodUtility;
 use N86io\Reflection\Utility\ReflectionPropertyUtility;
 
 /**
@@ -66,7 +66,7 @@ class ReflectionClass extends \ReflectionClass
      */
     public function getConstructor()
     {
-        return ReflectionMethodUtility::get(parent::getConstructor());
+        return ReflectionFunctionMethodUtility::get(parent::getConstructor());
     }
 
     /**
@@ -76,7 +76,7 @@ class ReflectionClass extends \ReflectionClass
      */
     public function getMethods($filter = null)
     {
-        return ReflectionMethodUtility::convertList(
+        return ReflectionFunctionMethodUtility::convertList(
             $filter === null ? parent::getMethods() : parent::getMethods($filter)
         );
     }
@@ -88,7 +88,7 @@ class ReflectionClass extends \ReflectionClass
      */
     public function getMethod($name)
     {
-        return ReflectionMethodUtility::convert(parent::getMethod($name));
+        return ReflectionFunctionMethodUtility::convert(parent::getMethod($name));
     }
 
     /**

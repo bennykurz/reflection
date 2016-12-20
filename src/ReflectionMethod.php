@@ -22,7 +22,7 @@ namespace N86io\Reflection;
 
 use N86io\Reflection\Utility\ReflectionClassUtility;
 use N86io\Reflection\Utility\ReflectionExtensionUtility;
-use N86io\Reflection\Utility\ReflectionMethodUtility;
+use N86io\Reflection\Utility\ReflectionFunctionMethodUtility;
 use N86io\Reflection\Utility\ReflectionParameterUtility;
 
 /**
@@ -66,7 +66,7 @@ class ReflectionMethod extends \ReflectionMethod
      */
     public function getPrototype()
     {
-        return ReflectionMethodUtility::convert(parent::getPrototype());
+        return ReflectionFunctionMethodUtility::convert(parent::getPrototype());
     }
 
     /**

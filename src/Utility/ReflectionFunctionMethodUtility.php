@@ -20,27 +20,44 @@ declare(strict_types=1);
 
 namespace N86io\Reflection\Utility;
 
+use N86io\Reflection\ReflectionFunction;
 use N86io\Reflection\ReflectionMethod;
+use Webmozart\Assert\Assert;
 
 /**
- * Class ReflectionMethodUtility
+ * Class ReflectionFunctionMethodUtility
  *
  * @author Viktor Firus <v@n86.io>
  */
-class ReflectionMethodUtility
+class ReflectionFunctionMethodUtility
 {
     /**
-     * @param \ReflectionMethod|null $method
+     * @param \ReflectionFunctionAbstract|null $method
      *
-     * @return ReflectionMethod|null
+     * @return ReflectionFunction|ReflectionMethod|null
      */
     public static function get($method)
     {
-        if (!$method instanceof \ReflectionMethod) {
+        if (!$method instanceof \ReflectionFunctionAbstract) {
             return null;
         }
 
-        return ReflectionMethodUtility::convert($method);
+        return self::convert($method);
+    }
+
+    /**
+     * @param \ReflectionFunctionAbstract $function
+     *
+     * @return ReflectionFunction|ReflectionMethod
+     */
+    public static function convert(\ReflectionFunctionAbstract $function)
+    {
+        if ($function instanceof \ReflectionMethod) {
+            return self::convertMethod($function);
+        }
+
+        /** @var \ReflectionFunction $function */
+        return self::convertFunction($function);
     }
 
     /**
@@ -48,21 +65,32 @@ class ReflectionMethodUtility
      *
      * @return ReflectionMethod
      */
-    public static function convert(\ReflectionMethod $method): ReflectionMethod
+    protected static function convertMethod(\ReflectionMethod $method): ReflectionMethod
     {
         return new ReflectionMethod($method->getDeclaringClass()->getName(), $method->getName());
     }
 
     /**
+     * @param \ReflectionFunction $function
+     *
+     * @return ReflectionFunction
+     */
+    protected static function convertFunction(\ReflectionFunction $function): ReflectionFunction
+    {
+        return new ReflectionFunction($function->getName());
+    }
+
+    /**
      * @param \ReflectionMethod[] $methods
      *
-     * @return array
+     * @return ReflectionFunction[]|ReflectionMethod[]
      */
     public static function convertList(array $methods): array
     {
         $returnMethods = [];
         foreach ($methods as $method) {
-            $returnMethods[] = static::convert($method);
+            Assert::isInstanceOf($method, \ReflectionFunctionAbstract::class);
+            $returnMethods[] = self::convert($method);
         }
 
         return $returnMethods;

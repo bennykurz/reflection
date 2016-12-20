@@ -21,8 +21,7 @@ declare(strict_types=1);
 namespace N86io\Reflection;
 
 use N86io\Reflection\Utility\ReflectionClassUtility;
-use N86io\Reflection\Utility\ReflectionFunctionUtility;
-use N86io\Reflection\Utility\ReflectionMethodUtility;
+use N86io\Reflection\Utility\ReflectionFunctionMethodUtility;
 
 /**
  * Class ReflectionParameter
@@ -52,14 +51,6 @@ class ReflectionParameter extends \ReflectionParameter
      */
     public function getDeclaringFunction()
     {
-        $parentDeclaringFunction = parent::getDeclaringFunction();
-        if ($parentDeclaringFunction instanceof \ReflectionMethod) {
-            return ReflectionMethodUtility::convert(
-                $parentDeclaringFunction
-            );
-        }
-
-        /** @var $parentDeclaringFunction \ReflectionFunction */
-        return ReflectionFunctionUtility::convert($parentDeclaringFunction);
+        return ReflectionFunctionMethodUtility::convert(parent::getDeclaringFunction());
     }
 }
