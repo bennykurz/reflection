@@ -38,6 +38,13 @@ class ReflectionFunctionMethodUtilityTest extends TestCase
             ReflectionFunction::class,
             ReflectionFunctionMethodUtility::convert(new \ReflectionFunction('date'))
         );
+
+        $closure = function () {
+        };
+        $this->assertInstanceOf(
+            ReflectionFunction::class,
+            ReflectionFunctionMethodUtility::convert(new \ReflectionFunction($closure))
+        );
     }
 
     public function testReflectionMethod()

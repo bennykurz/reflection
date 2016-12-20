@@ -61,26 +61,6 @@ class ReflectionFunctionMethodUtility
     }
 
     /**
-     * @param \ReflectionMethod $method
-     *
-     * @return ReflectionMethod
-     */
-    protected static function convertMethod(\ReflectionMethod $method): ReflectionMethod
-    {
-        return new ReflectionMethod($method->getDeclaringClass()->getName(), $method->getName());
-    }
-
-    /**
-     * @param \ReflectionFunction $function
-     *
-     * @return ReflectionFunction
-     */
-    protected static function convertFunction(\ReflectionFunction $function): ReflectionFunction
-    {
-        return new ReflectionFunction($function->getName());
-    }
-
-    /**
      * @param \ReflectionMethod[] $methods
      *
      * @return ReflectionFunction[]|ReflectionMethod[]
@@ -94,5 +74,65 @@ class ReflectionFunctionMethodUtility
         }
 
         return $returnMethods;
+    }
+
+    /**
+     * @param \ReflectionFunctionAbstract $functionAbstract
+     *
+     * @return bool
+     */
+    public static function isClosure(\ReflectionFunctionAbstract $functionAbstract): bool
+    {
+        return strpos($functionAbstract->getName(), '{closure}') !== false;
+    }
+
+    /**
+     * @param \ReflectionFunctionAbstract $functionAbstract
+     *
+     * @return bool
+     */
+    public static function isFunction(\ReflectionFunctionAbstract $functionAbstract): bool
+    {
+        return (
+            $functionAbstract instanceof \ReflectionFunction &&
+            !self::isClosure($functionAbstract)
+        );
+    }
+
+    /**
+     * @param \ReflectionFunctionAbstract $functionAbstract
+     *
+     * @return bool
+     */
+    public static function isMethod(\ReflectionFunctionAbstract $functionAbstract): bool
+    {
+        return (
+            $functionAbstract instanceof \ReflectionMethod &&
+            !self::isClosure($functionAbstract)
+        );
+    }
+
+    /**
+     * @param \ReflectionMethod $method
+     *
+     * @return ReflectionMethod
+     */
+    private static function convertMethod(\ReflectionMethod $method): ReflectionMethod
+    {
+        return new ReflectionMethod($method->getDeclaringClass()->getName(), $method->getName());
+    }
+
+    /**
+     * @param \ReflectionFunction $function
+     *
+     * @return ReflectionFunction
+     */
+    private static function convertFunction(\ReflectionFunction $function): ReflectionFunction
+    {
+        if (self::isClosure($function)) {
+            return new ReflectionFunction($function->getClosure());
+        }
+
+        return new ReflectionFunction($function->getName());
     }
 }

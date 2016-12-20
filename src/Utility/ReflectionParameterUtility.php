@@ -67,7 +67,7 @@ class ReflectionParameterUtility
      */
     private static function createFunctionDefinition(\ReflectionParameter $parameter)
     {
-        if (self::isClosureParameter($parameter)) {
+        if (ReflectionFunctionMethodUtility::isClosure($parameter->getDeclaringFunction())) {
             $func = $parameter->getDeclaringFunction();
             if ($func instanceof \ReflectionMethod) {
                 return $func->getClosure($func->getClosureThis());
@@ -77,11 +77,11 @@ class ReflectionParameterUtility
             return $func->getClosure();
         }
 
-        if (self::isFunctionParameter($parameter)) {
+        if (ReflectionFunctionMethodUtility::isFunction($parameter->getDeclaringFunction())) {
             return $parameter->getDeclaringFunction()->getName();
         }
 
-        if (self::isMethodParameter($parameter)) {
+        if (ReflectionFunctionMethodUtility::isMethod($parameter->getDeclaringFunction())) {
             return [
                 $parameter->getDeclaringClass()->getName(),
                 $parameter->getDeclaringFunction()->getName()
@@ -91,41 +91,5 @@ class ReflectionParameterUtility
         // @codeCoverageIgnoreStart
         throw new ReflectionParameterException('Unknown error.');
         // @codeCoverageIgnoreEnd
-    }
-
-    /**
-     * @param \ReflectionParameter $parameter
-     *
-     * @return bool
-     */
-    private static function isClosureParameter(\ReflectionParameter $parameter): bool
-    {
-        return strpos($parameter->getDeclaringFunction()->getName(), '{closure}') !== false;
-    }
-
-    /**
-     * @param \ReflectionParameter $parameter
-     *
-     * @return bool
-     */
-    private static function isFunctionParameter(\ReflectionParameter $parameter): bool
-    {
-        return (
-            $parameter->getDeclaringFunction() instanceof \ReflectionFunction &&
-            !self::isClosureParameter($parameter)
-        );
-    }
-
-    /**
-     * @param \ReflectionParameter $parameter
-     *
-     * @return bool
-     */
-    private static function isMethodParameter(\ReflectionParameter $parameter): bool
-    {
-        return (
-            $parameter->getDeclaringFunction() instanceof \ReflectionMethod &&
-            !self::isClosureParameter($parameter)
-        );
     }
 }
