@@ -20,6 +20,7 @@ namespace N86io\Reflection;
 
 use N86io\Reflection\Utility\ReflectionClassUtility;
 use N86io\Reflection\Utility\ReflectionExtensionUtility;
+use N86io\Reflection\Utility\ReflectionMethodUtility;
 
 /**
  * Class ReflectionClass
@@ -63,11 +64,10 @@ class ReflectionClass extends \ReflectionClass
     public function getConstructor()
     {
         $parentConstructor = parent::getConstructor();
-        if ($parentConstructor instanceof \ReflectionMethod) {
-            return new ReflectionMethod($this->getName(), $parentConstructor->getName());
-        }
 
-        return null;
+        return $parentConstructor instanceof \ReflectionMethod ?
+            ReflectionMethodUtility::convertMethod($this->getName(), $parentConstructor) :
+            null;
     }
 
     /**
@@ -78,12 +78,8 @@ class ReflectionClass extends \ReflectionClass
     public function getMethods($filter = null)
     {
         $parentMethods = $filter === null ? parent::getMethods() : parent::getMethods($filter);
-        $returnMethods = [];
-        foreach ($parentMethods as $originalMethod) {
-            $returnMethods[] = new ReflectionMethod($this->getName(), $originalMethod->getName());
-        }
 
-        return $returnMethods;
+        return ReflectionMethodUtility::convertMethods($this->getName(), $parentMethods);
     }
 
     /**
@@ -93,7 +89,7 @@ class ReflectionClass extends \ReflectionClass
      */
     public function getMethod($name)
     {
-        return new ReflectionMethod($this->getName(), parent::getMethod($name)->getName());
+        return ReflectionMethodUtility::convertMethod($this->getName(), parent::getMethod($name));
     }
 
     /**

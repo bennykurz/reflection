@@ -20,6 +20,7 @@ namespace N86io\Reflection;
 
 use N86io\Reflection\Utility\ReflectionClassUtility;
 use N86io\Reflection\Utility\ReflectionExtensionUtility;
+use N86io\Reflection\Utility\ReflectionMethodUtility;
 
 /**
  * Class ReflectionMethod
@@ -71,9 +72,7 @@ class ReflectionMethod extends \ReflectionMethod
      */
     public function getPrototype()
     {
-        $parentPrototype = parent::getPrototype();
-
-        return new ReflectionMethod($this->getDeclaringClass()->getName(), $parentPrototype->getName());
+        return ReflectionMethodUtility::convertMethod($this->getDeclaringClass()->getName(), parent::getPrototype());
     }
 
     /**
