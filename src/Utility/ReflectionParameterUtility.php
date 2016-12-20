@@ -18,6 +18,7 @@
 
 namespace N86io\Reflection\Utility;
 
+use N86io\Reflection\Exception\ReflectionParameterException;
 use N86io\Reflection\ReflectionParameter;
 use Webmozart\Assert\Assert;
 
@@ -29,87 +30,94 @@ use Webmozart\Assert\Assert;
 class ReflectionParameterUtility
 {
     /**
-     * @param \Closure             $closure
      * @param \ReflectionParameter $parameter
      *
      * @return ReflectionParameter
      */
-    public static function convertClosureParameter(
-        \Closure $closure,
-        \ReflectionParameter $parameter
-    ): ReflectionParameter {
-        return self::convertParameter($closure, $parameter);
+    public static function convertParameter(\ReflectionParameter $parameter): ReflectionParameter
+    {
+        $functionDefinition = self::createFunctionDefinition($parameter);
+
+        return new ReflectionParameter($functionDefinition, $parameter->getName());
     }
 
     /**
-     * @param string               $functionName
-     * @param \ReflectionParameter $parameter
-     *
-     * @return ReflectionParameter
-     */
-    public static function convertFunctionParameter(
-        string $functionName,
-        \ReflectionParameter $parameter
-    ): ReflectionParameter {
-        return self::convertParameter($functionName, $parameter);
-    }
-
-    public static function convertMethodParameter(
-        string $className,
-        string $methodName,
-        \ReflectionParameter $parameter
-    ): ReflectionParameter {
-        return self::convertParameter([$className, $methodName], $parameter);
-    }
-
-    /**
-     * @param string                 $functionName
-     * @param \Closure               $closure
      * @param \ReflectionParameter[] $parameters
      *
      * @return ReflectionParameter[]
      */
-    public static function convertFunctionParameters(string $functionName, \Closure $closure, array $parameters): array
+    public static function convertParameters(array $parameters): array
     {
         $returnParameters = [];
         foreach ($parameters as $parameter) {
             Assert::isInstanceOf($parameter, \ReflectionParameter::class);
-            if (strpos($functionName, '{closure}') !== false) {
-                $returnParameters[] = static::convertClosureParameter($closure, $parameter);
-                continue;
-            }
-            $returnParameters[] = static::convertFunctionParameter($functionName, $parameter);
+            $returnParameters[] = static::convertParameter($parameter);
         }
 
         return $returnParameters;
     }
 
     /**
-     * @param string                 $className
-     * @param string                 $methodName
-     * @param \ReflectionParameter[] $parameters
+     * @param \ReflectionParameter $parameter
      *
-     * @return ReflectionParameter[]
+     * @return array|\Closure|string
+     * @throws ReflectionParameterException
      */
-    public static function convertMethodParameters(string $className, string $methodName, array $parameters): array
+    private static function createFunctionDefinition(\ReflectionParameter $parameter)
     {
-        $returnParameters = [];
-        foreach ($parameters as $parameter) {
-            Assert::isInstanceOf($parameter, \ReflectionParameter::class);
-            $returnParameters[] = static::convertMethodParameter($className, $methodName, $parameter);
+        if (self::isClosureParameter($parameter)) {
+            /** @var \ReflectionMethod $func */
+            $func = $parameter->getDeclaringFunction();
+
+            return $func->getClosure($func->getClosureThis());
         }
 
-        return $returnParameters;
+        if (self::isFunctionParameter($parameter)) {
+            return $parameter->getDeclaringFunction()->getName();
+        }
+
+        if (self::isMethodParameter($parameter)) {
+            return [
+                $parameter->getDeclaringClass()->getName(),
+                $parameter->getDeclaringFunction()->getName()
+            ];
+        }
+
+        // @codeCoverageIgnoreStart
+        throw new ReflectionParameterException('Unknown error.');
+        // @codeCoverageIgnoreEnd
     }
 
     /**
-     * @param mixed                $function
      * @param \ReflectionParameter $parameter
      *
-     * @return ReflectionParameter
+     * @return bool
      */
-    private static function convertParameter($function, \ReflectionParameter $parameter): ReflectionParameter
+    private static function isClosureParameter(\ReflectionParameter $parameter): bool
     {
-        return new ReflectionParameter($function, $parameter->getName());
+        return strpos($parameter->getDeclaringFunction()->getName(), '{closure}') !== false;
+    }
+
+    /**
+     * @param \ReflectionParameter $parameter
+     *
+     * @return bool
+     */
+    private static function isFunctionParameter(\ReflectionParameter $parameter): bool
+    {
+        return $parameter->getDeclaringFunction() instanceof \ReflectionFunction;
+    }
+
+    /**
+     * @param \ReflectionParameter $parameter
+     *
+     * @return bool
+     */
+    private static function isMethodParameter(\ReflectionParameter $parameter): bool
+    {
+        return (
+            $parameter->getDeclaringFunction() instanceof \ReflectionMethod &&
+            !self::isClosureParameter($parameter)
+        );
     }
 }
