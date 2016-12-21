@@ -1,11 +1,8 @@
 {
   "name": "n86io/reflection",
-  "description": "Extends the PHP ReflectionClass, ReflectionMethod, ReflectionProperty, ReflectionFunction and ReflectionParameter with doc-comment parsing.",
+  "description": "Extends the PHP Reflection classes with doc-comment parsing and some other features.",
   "license": "GPL-3.0+",
   "keywords": [
-    "class",
-    "method",
-    "property",
     "reflection"
   ],
   "authors": [
