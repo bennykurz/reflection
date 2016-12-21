@@ -5,4 +5,4 @@
 [![Packagist](https://img.shields.io/packagist/l/n86io/reflection.svg?style=flat-square)](https://packagist.org/packages/n86io/reflection)
 ![PHP](https://img.shields.io/badge/PHP-7.0%2C%207.1-blue.svg?style=flat-square)
 
-Documentation coming soon...
+[Here goes to documentation.](http://n86ioreflection.readthedocs.io)
