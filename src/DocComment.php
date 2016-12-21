@@ -106,6 +106,7 @@ class DocComment
      * @param string $name
      *
      * @return array
+     * @throws \InvalidArgumentException
      */
     public function getTagsByName(string $name)
     {
