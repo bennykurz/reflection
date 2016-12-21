@@ -24,8 +24,6 @@ use N86io\Reflection\Utility\ReflectionParameterUtility;
 use PHPUnit\Framework\TestCase;
 
 /**
- * Class ReflectionParameterUtilityTest
- *
  * @author Viktor Firus <v@n86.io>
  */
 class ReflectionParameterUtilityTest extends TestCase

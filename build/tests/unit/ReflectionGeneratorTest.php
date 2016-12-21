@@ -22,8 +22,6 @@ use N86io\Reflection\ReflectionGenerator;
 use PHPUnit\Framework\TestCase;
 
 /**
- * Class ReflectionGeneratorTest
- *
  * @author Viktor Firus <v@n86.io>
  */
 class ReflectionGeneratorTest extends TestCase

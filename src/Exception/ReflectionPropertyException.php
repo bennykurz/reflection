@@ -19,9 +19,8 @@
 namespace N86io\Reflection\Exception;
 
 /**
- * Class ReflectionPropertyException
- *
  * @author Viktor Firus <v@n86.io>
+ * @since  1.0.0
  */
 class ReflectionPropertyException extends \Exception
 {

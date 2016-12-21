@@ -24,29 +24,37 @@ use phpDocumentor\Reflection\Types\ContextFactory;
 use Webmozart\Assert\Assert;
 
 /**
- * Class DocComment
+ * In this class the doc-comment parser from phpDocumentor\Reflection will be used to parse doc-comment and provide the
+ * summary, description and tags.
  *
  * @author Viktor Firus <v@n86.io>
+ * @since  0.1.0
  */
 class DocComment
 {
     /**
+     * Summary of doc-comment. (First, short description.)
+     *
      * @var string
      */
-    protected $summary = '';
+    private $summary = '';
 
     /**
+     * Description of doc-comment. (Second long description.)
+     *
      * @var string
      */
-    protected $description = '';
+    private $description = '';
 
     /**
+     * Tags used in doc-comment.
+     *
      * @var array
      */
-    protected $tags = [];
+    private $tags = [];
 
     /**
-     * DocComment constructor.
+     * Parse the doc-comment and store it to the given class-variables.
      *
      * @param \Reflector $reflector
      */
@@ -79,6 +87,8 @@ class DocComment
     }
 
     /**
+     * Return the parsed summary.
+     *
      * @return string
      */
     public function getSummary()
@@ -87,6 +97,8 @@ class DocComment
     }
 
     /**
+     * Return the parsed description.
+     *
      * @return string
      */
     public function getDescription()
@@ -95,6 +107,8 @@ class DocComment
     }
 
     /**
+     * Return all parsed tags with values.
+     *
      * @return array
      */
     public function getTags()
@@ -103,6 +117,8 @@ class DocComment
     }
 
     /**
+     * Return values from tag-name. Throw exception, if tag name doesn't exist.
+     *
      * @param string $name
      *
      * @return array
@@ -110,7 +126,7 @@ class DocComment
      */
     public function getTagsByName(string $name)
     {
-        if (!array_key_exists($name, $this->tags)) {
+        if (!$this->hasTag($name)) {
             throw new \InvalidArgumentException('Tag with name "' . $name . '" doesn\'t exists.');
         }
 
@@ -118,6 +134,8 @@ class DocComment
     }
 
     /**
+     * Check if tag-name exist.
+     *
      * @param string $name
      *
      * @return bool

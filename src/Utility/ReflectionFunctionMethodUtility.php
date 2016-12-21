@@ -23,13 +23,18 @@ use N86io\Reflection\ReflectionMethod;
 use Webmozart\Assert\Assert;
 
 /**
- * Class ReflectionFunctionMethodUtility
+ * Collection of functions to convert build-in \ReflectionFunctionAbstract to \N86io\Reflection\ReflectionFunction or
+ * \N86io\Reflection\ReflectionMethod.
  *
  * @author Viktor Firus <v@n86.io>
+ * @since  1.0.0
  */
 class ReflectionFunctionMethodUtility
 {
     /**
+     * Check if parameter is of type \ReflectionFunctionAbstract, and call and return in that case
+     * self::convert($class), otherwise returns null.
+     *
      * @param \ReflectionFunctionAbstract|null $method
      *
      * @return ReflectionFunction|ReflectionMethod|null
@@ -44,6 +49,9 @@ class ReflectionFunctionMethodUtility
     }
 
     /**
+     * Convert \ReflectionFunctionAbstract to \N86io\Reflection\ReflectionFunction or
+     * \N86io\Reflection\ReflectionMethod.
+     *
      * @param \ReflectionFunctionAbstract $function
      *
      * @return ReflectionFunction|ReflectionMethod
@@ -59,7 +67,10 @@ class ReflectionFunctionMethodUtility
     }
 
     /**
-     * @param \ReflectionMethod[] $methods
+     * Convert array of objects with type \ReflectionFunctionAbstract to \N86io\Reflection\ReflectionFunction or
+     * \N86io\Reflection\ReflectionMethod.
+     *
+     * @param \ReflectionFunctionAbstract[] $methods
      *
      * @return ReflectionFunction[]|ReflectionMethod[]
      */
@@ -75,6 +86,8 @@ class ReflectionFunctionMethodUtility
     }
 
     /**
+     * Check if given parameter is closure.
+     *
      * @param \ReflectionFunctionAbstract $functionAbstract
      *
      * @return bool
@@ -85,6 +98,8 @@ class ReflectionFunctionMethodUtility
     }
 
     /**
+     * Check if given parameter is function. It's doesn't count as function, if it is closure.
+     *
      * @param \ReflectionFunctionAbstract $functionAbstract
      *
      * @return bool
@@ -98,6 +113,8 @@ class ReflectionFunctionMethodUtility
     }
 
     /**
+     * Check if given parameter is method. It's doesn't count as function, if it is closure.
+     *
      * @param \ReflectionFunctionAbstract $functionAbstract
      *
      * @return bool
@@ -111,6 +128,8 @@ class ReflectionFunctionMethodUtility
     }
 
     /**
+     * Convert \ReflectionMethod to \N86io\Reflection\ReflectionMethod.
+     *
      * @param \ReflectionMethod $method
      *
      * @return ReflectionMethod
@@ -121,6 +140,8 @@ class ReflectionFunctionMethodUtility
     }
 
     /**
+     * Convert \ReflectionFunction to \N86io\Reflection\ReflectionFunction.
+     *
      * @param \ReflectionFunction $function
      *
      * @return ReflectionFunction

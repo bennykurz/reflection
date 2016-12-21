@@ -23,13 +23,16 @@ use N86io\Reflection\ReflectionParameter;
 use Webmozart\Assert\Assert;
 
 /**
- * Class ReflectionParameterUtility
+ * Collection of functions to convert build-in \ReflectionParameter to \N86io\Reflection\ReflectionParameter.
  *
  * @author Viktor Firus <v@n86.io>
+ * @since  1.0.0
  */
 class ReflectionParameterUtility
 {
     /**
+     * Convert \ReflectionParameter to \N86io\Reflection\ReflectionParameter.
+     *
      * @param \ReflectionParameter $parameter
      *
      * @return ReflectionParameter
@@ -42,6 +45,8 @@ class ReflectionParameterUtility
     }
 
     /**
+     * Convert array of objects with type \ReflectionParameter to \N86io\Reflection\ReflectionParameter.
+     *
      * @param \ReflectionParameter[] $parameters
      *
      * @return ReflectionParameter[]
@@ -58,6 +63,11 @@ class ReflectionParameterUtility
     }
 
     /**
+     * For creating ReflectionParameter it is necessary to define the function correct. This method create it right.
+     *
+     * Functions need simple function-name. Methods of classes need an array with first element is class-name and
+     * second is method name. And closures need simple the closure itself.
+     *
      * @param \ReflectionParameter $parameter
      *
      * @return array|\Closure|string

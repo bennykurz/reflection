@@ -23,9 +23,11 @@ use N86io\Reflection\Utility\ReflectionExtensionUtility;
 use N86io\Reflection\Utility\ReflectionParameterUtility;
 
 /**
- * Class ReflectionFunction
+ * Wrap the build-in \ReflectionFunction and extend it with doc-comment parser. All methods, who are return a reflection
+ * object, return also a wrapped reflection object.
  *
  * @author Viktor Firus <v@n86.io>
+ * @since  0.1.0
  */
 class ReflectionFunction extends \ReflectionFunction
 {
@@ -59,6 +61,8 @@ class ReflectionFunction extends \ReflectionFunction
     }
 
     /**
+     * Return the parsed doc-comment.
+     *
      * @return DocComment
      */
     public function getParsedDocComment()

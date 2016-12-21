@@ -22,9 +22,12 @@ use N86io\Reflection\Exception\ReflectionPropertyException;
 use N86io\Reflection\Utility\ReflectionClassUtility;
 
 /**
- * Class ReflectionProperty
+ * Wrap the build-in \ReflectionProperty and extend it with doc-comment parser and methods to check if property has
+ * getter or setter and output. All methods, who are return a reflection object, return also a wrapped reflection
+ * object.
  *
  * @author Viktor Firus <v@n86.io>
+ * @since  0.1.0
  */
 class ReflectionProperty extends \ReflectionProperty
 {
@@ -42,6 +45,8 @@ class ReflectionProperty extends \ReflectionProperty
     }
 
     /**
+     * Return the parsed doc-comment.
+     *
      * @return DocComment
      */
     public function getParsedDocComment()
@@ -54,6 +59,8 @@ class ReflectionProperty extends \ReflectionProperty
     }
 
     /**
+     * Check, if property has setter.
+     *
      * @return bool
      */
     public function hasGetter()
@@ -68,6 +75,14 @@ class ReflectionProperty extends \ReflectionProperty
     }
 
     /**
+     * Return getter from property, if exist, otherwise throw an exception. Getter would be determined from
+     * property-name. Boolean type can have isPropertyName and getPropertyName and all other only getPropertyName.
+     *
+     * Ex:
+     * propertyName => getPropertyName
+     * property_name => getProperty_name
+     * booleanValue => isBooleanValue
+     *
      * @return ReflectionMethod
      * @throws ReflectionPropertyException
      */
@@ -93,6 +108,8 @@ class ReflectionProperty extends \ReflectionProperty
     }
 
     /**
+     * Check, if property has setter.
+     *
      * @return bool
      */
     public function hasSetter()
@@ -107,6 +124,13 @@ class ReflectionProperty extends \ReflectionProperty
     }
 
     /**
+     * Return setter from property, if exist, otherwise throw an exception. Setter would be determined from
+     * property-name.
+     *
+     * Ex:
+     * propertyName => setPropertyName
+     * property_name => setProperty_name
+     *
      * @return ReflectionMethod
      * @throws ReflectionPropertyException
      */

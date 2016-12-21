@@ -23,8 +23,6 @@ use N86io\Reflection\Tests\Unit\Stuff\TestClass;
 use PHPUnit\Framework\TestCase;
 
 /**
- * Class ReflectionParameterTest
- *
  * @author Viktor Firus <v@n86.io>
  */
 class ReflectionParameterTest extends TestCase

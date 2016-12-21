@@ -23,8 +23,6 @@ use N86io\Reflection\Utility\ReflectionExtensionUtility;
 use PHPUnit\Framework\TestCase;
 
 /**
- * Class ReflectionExtensionUtilityTest
- *
  * @author Viktor Firus <v@n86.io>
  */
 class ReflectionExtensionUtilityTest extends TestCase

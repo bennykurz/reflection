@@ -22,13 +22,16 @@ use N86io\Reflection\ReflectionProperty;
 use Webmozart\Assert\Assert;
 
 /**
- * Class ReflectionPropertyUtility
+ * Collection of functions to convert build-in \ReflectionProperty to \N86io\Reflection\ReflectionProperty.
  *
  * @author Viktor Firus <v@n86.io>
+ * @since  1.0.0
  */
 class ReflectionPropertyUtility
 {
     /**
+     * Convert \ReflectionProperty to \N86io\Reflection\ReflectionProperty.
+     *
      * @param \ReflectionProperty $property
      *
      * @return ReflectionProperty
@@ -39,9 +42,11 @@ class ReflectionPropertyUtility
     }
 
     /**
+     * Convert array of objects with type \ReflectionProperty to \N86io\Reflection\ReflectionProperty.
+     *
      * @param \ReflectionProperty[] $properties
      *
-     * @return array|ReflectionProperty[]
+     * @return ReflectionProperty[]
      */
     public static function convertList(array $properties): array
     {

@@ -21,13 +21,17 @@ namespace N86io\Reflection\Utility;
 use N86io\Reflection\ReflectionExtension;
 
 /**
- * Class ReflectionExtensionUtility
+ * Collection of functions to convert build-in \ReflectionExtension to \N86io\Reflection\ReflectionExtension.
  *
  * @author Viktor Firus <v@n86.io>
+ * @since  1.0.0
  */
 class ReflectionExtensionUtility
 {
     /**
+     * Check if parameter is of type \ReflectionExtension, and call and return in that case self::convert($class),
+     * otherwise returns null.
+     *
      * @param \ReflectionExtension|null $extension
      *
      * @return ReflectionExtension|null
@@ -42,6 +46,8 @@ class ReflectionExtensionUtility
     }
 
     /**
+     * Convert \ReflectionExtension to \N86io\Reflection\ReflectionExtension.
+     *
      * @param \ReflectionExtension $extension
      *
      * @return ReflectionExtension

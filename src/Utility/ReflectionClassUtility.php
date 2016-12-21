@@ -22,13 +22,17 @@ use N86io\Reflection\ReflectionClass;
 use Webmozart\Assert\Assert;
 
 /**
- * Class ReflectionClassUtility
+ * Collection of functions to convert build-in \ReflectionClass to \N86io\Reflection\ReflectionClass.
  *
  * @author Viktor Firus <v@n86.io>
+ * @since  1.0.0
  */
 class ReflectionClassUtility
 {
     /**
+     * Check if parameter is of type \ReflectionClass, and call and return in that case self::convert($class),
+     * otherwise returns the given value again.
+     *
      * @param bool|\ReflectionClass $class
      *
      * @return bool|ReflectionClass|null
@@ -43,6 +47,8 @@ class ReflectionClassUtility
     }
 
     /**
+     * Convert \ReflectionClass to \N86io\Reflection\ReflectionClass.
+     *
      * @param \ReflectionClass $class
      *
      * @return ReflectionClass
@@ -53,6 +59,8 @@ class ReflectionClassUtility
     }
 
     /**
+     * Convert array of objects with type \ReflectionClass to \N86io\Reflection\ReflectionClass.
+     *
      * @param \ReflectionClass[] $classes
      *
      * @return ReflectionClass[]

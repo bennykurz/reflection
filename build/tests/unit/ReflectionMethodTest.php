@@ -24,8 +24,6 @@ use N86io\Reflection\Tests\Unit\Stuff\TestClass;
 use PHPUnit\Framework\TestCase;
 
 /**
- * Class ReflectionMethodTest
- *
  * @author Viktor Firus <v@n86.io>
  */
 class ReflectionMethodTest extends TestCase

@@ -26,8 +26,6 @@ use N86io\Reflection\Tests\Unit\Stuff\TestClass;
 use PHPUnit\Framework\TestCase;
 
 /**
- * Class DocCommentTest
- *
  * @author Viktor Firus <v@n86.io>
  */
 class DocCommentTest extends TestCase

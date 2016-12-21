@@ -22,9 +22,11 @@ use N86io\Reflection\Utility\ReflectionClassUtility;
 use N86io\Reflection\Utility\ReflectionFunctionMethodUtility;
 
 /**
- * Class ReflectionParameter
+ * Wrap the build-in \ReflectionParameter. All methods, who are return a reflection object, return a wrapped reflection
+ * object.
  *
  * @author Viktor Firus <v@n86.io>
+ * @since  0.1.0
  */
 class ReflectionParameter extends \ReflectionParameter
 {

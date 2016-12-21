@@ -21,9 +21,11 @@ namespace N86io\Reflection;
 use N86io\Reflection\Utility\ReflectionClassUtility;
 
 /**
- * Class ReflectionExtension
+ * Wrap the build-in \ReflectionExtension. All methods, who are return a reflection object, return a wrapped reflection
+ * object.
  *
  * @author Viktor Firus <v@n86.io>
+ * @since  1.0.0
  */
 class ReflectionExtension extends \ReflectionExtension
 {
