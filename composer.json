@@ -31,11 +31,6 @@
       "N86io\\Reflection\\Tests\\Unit\\Stuff\\": "build/tests/unit/Stuff"
     }
   },
-  "extra": {
-    "branch-alias": {
-      "dev-master": "1.0-dev"
-    }
-  },
   "scripts": {
     "test": [
       "@composer install",
