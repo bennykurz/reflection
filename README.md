@@ -2,7 +2,6 @@
 [![Code Climate](https://img.shields.io/codeclimate/github/n86io/reflection.svg?style=flat-square)](https://codeclimate.com/github/n86io/reflection)
 [![Test Coverage](https://img.shields.io/codeclimate/coverage/github/n86io/reflection.svg?style=flat-square)](https://codeclimate.com/github/n86io/reflection/coverage)
 [![Issue Count](https://img.shields.io/codeclimate/issues/github/n86io/reflection.svg?style=flat-square)](https://codeclimate.com/github/n86io/reflection/issues)
-[![Style Ci](https://styleci.io/repos/72180778/shield?style=flat-square)](https://styleci.io/repos/72180778)
 [![Packagist](https://img.shields.io/packagist/l/n86io/reflection.svg?style=flat-square)](https://packagist.org/packages/n86io/reflection)
 ![PHP](https://img.shields.io/badge/PHP-7.0%2C%207.1-blue.svg?style=flat-square)
 
