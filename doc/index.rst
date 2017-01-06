@@ -1,5 +1,5 @@
-Welcome to n86io/reflection's documentation!
-============================================
+N86io/Reflection documentation
+==============================
 
 Install
 =======
